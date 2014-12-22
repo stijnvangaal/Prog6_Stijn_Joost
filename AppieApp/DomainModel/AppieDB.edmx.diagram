@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70696dfb939444b88e667341dd877527" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="AppieDB.Product" Width="1.5" PointX="4.625" PointY="6.125" />
+        <EntityTypeShape EntityType="AppieDB.Afdeling" Width="1.5" PointX="1" PointY="6.5" />
+        <EntityTypeShape EntityType="AppieDB.Merk" Width="1.5" PointX="4.375" PointY="0.5" />
+        <AssociationConnector Association="AppieDB.AfdelingProduct" />
+        <EntityTypeShape EntityType="AppieDB.ProductMerk" Width="1.5" PointX="4.375" PointY="3" />
+        <EntityTypeShape EntityType="AppieDB.Korting" Width="1.875" PointX="7.375" PointY="0.5" />
+        <EntityTypeShape EntityType="AppieDB.BoodschappenLijst" Width="2" PointX="11.375" PointY="4.5" />
+        <AssociationConnector Association="AppieDB.ProductProductMerk" />
+        <AssociationConnector Association="AppieDB.MerkProductMerk" />
+        <AssociationConnector Association="AppieDB.ProductMerkKorting" />
+        <EntityTypeShape EntityType="AppieDB.BoodschappenProduct" Width="1.875" PointX="7.625" PointY="4.375" />
+        <AssociationConnector Association="AppieDB.BoodschappenLijstBoodschappenProduct" />
+        <AssociationConnector Association="AppieDB.ProductMerkBoodschappenProduct" />
+        <EntityTypeShape EntityType="AppieDB.Recept" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="AppieDB.ReceptProduct" Width="1.5" PointX="1.375" PointY="3.375" />
+        <AssociationConnector Association="AppieDB.ReceptReceptProduct" />
+        <AssociationConnector Association="AppieDB.ProductMerkReceptProduct" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
