@@ -1,0 +1,12 @@
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\bin\Debug\Boodschappen.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\bin\Debug\Boodschappen.pdb
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen.csprojResolveAssemblyReference.cache
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\MainWindow.baml
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\MainWindow.g.cs
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\App.g.cs
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen_MarkupCompile.cache
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen.g.resources
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen.Properties.Resources.resources
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen.csproj.GenerateResource.Cache
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\Boodschappen\obj\Debug\Boodschappen.pdb

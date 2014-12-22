@@ -1,0 +1,16 @@
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\bin\Debug\AppieProducten.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\bin\Debug\AppieProducten.pdb
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\MainWindow.baml
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\MainWindow.g.cs
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\App.g.cs
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten_MarkupCompile.cache
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten.g.resources
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten.Properties.Resources.resources
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten.csproj.GenerateResource.Cache
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten.pdb
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\bin\Debug\Boodschappen.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\bin\Debug\DomainModel.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\bin\Debug\Boodschappen.pdb
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\bin\Debug\DomainModel.pdb
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\AppieProducten\obj\Debug\AppieProducten.csprojResolveAssemblyReference.cache

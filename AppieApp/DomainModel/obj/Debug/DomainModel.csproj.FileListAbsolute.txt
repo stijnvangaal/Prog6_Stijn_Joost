@@ -1,0 +1,6 @@
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\DomainModel\bin\Debug\DomainModel.exe.config
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\DomainModel\bin\Debug\DomainModel.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\DomainModel\bin\Debug\DomainModel.pdb
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\DomainModel\obj\Debug\DomainModel.csprojResolveAssemblyReference.cache
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\DomainModel\obj\Debug\DomainModel.exe
+D:\stijn\school\c#\blok 6\Prog6_Stijn_Joost\AppieApp\DomainModel\obj\Debug\DomainModel.pdb
