@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="AppieDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="AppieDBTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AppieDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
+        <EntityContainer Name="AppieDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProductSet" EntityType="AppieDB.Product" />
+          <EntitySet Name="AfdelingSet" EntityType="AppieDB.Afdeling" />
+          <EntitySet Name="MerkSet" EntityType="AppieDB.Merk" />
+          <AssociationSet Name="AfdelingProduct" Association="AppieDB.AfdelingProduct">
+            <End Role="Afdeling" EntitySet="AfdelingSet" />
+            <End Role="Product" EntitySet="ProductSet" />
+          </AssociationSet>
+          <EntitySet Name="ProductMerkSet" EntityType="AppieDB.ProductMerk" />
+          <EntitySet Name="KortingSet" EntityType="AppieDB.Korting" />
+          <EntitySet Name="BoodschappenLijstSet" EntityType="AppieDB.BoodschappenLijst" />
+          <AssociationSet Name="ProductProductMerk" Association="AppieDB.ProductProductMerk">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+          </AssociationSet>
+          <AssociationSet Name="MerkProductMerk" Association="AppieDB.MerkProductMerk">
+            <End Role="Merk" EntitySet="MerkSet" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductMerkKorting" Association="AppieDB.ProductMerkKorting">
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+            <End Role="Korting" EntitySet="KortingSet" />
+          </AssociationSet>
+          <EntitySet Name="BoodschappenProductSet" EntityType="AppieDB.BoodschappenProduct" />
+          <AssociationSet Name="BoodschappenLijstBoodschappenProduct" Association="AppieDB.BoodschappenLijstBoodschappenProduct">
+            <End Role="BoodschappenLijst" EntitySet="BoodschappenLijstSet" />
+            <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductMerkBoodschappenProduct" Association="AppieDB.ProductMerkBoodschappenProduct">
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+            <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet" />
+          </AssociationSet>
+          <EntitySet Name="ReceptSet" EntityType="AppieDB.Recept" />
+          <EntitySet Name="ReceptProductSet" EntityType="AppieDB.ReceptProduct" />
+          <AssociationSet Name="ReceptReceptProduct" Association="AppieDB.ReceptReceptProduct">
+            <End Role="Recept" EntitySet="ReceptSet" />
+            <End Role="ReceptProduct" EntitySet="ReceptProductSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductMerkReceptProduct" Association="AppieDB.ProductMerkReceptProduct">
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+            <End Role="ReceptProduct" EntitySet="ReceptProductSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" />
+          <NavigationProperty Name="Afdeling" Relationship="AppieDB.AfdelingProduct" FromRole="Product" ToRole="Afdeling" />
+          <Property Name="AfdelingNaam" Type="String" Nullable="true" />
+          <NavigationProperty Name="ProductMerk" Relationship="AppieDB.ProductProductMerk" FromRole="Product" ToRole="ProductMerk" />
+        </EntityType>
+        <EntityType Name="Afdeling">
+          <Key>
+            <PropertyRef Name="Naam" />
+          </Key>
+          <Property Name="Naam" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Product" Relationship="AppieDB.AfdelingProduct" FromRole="Afdeling" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Merk">
+          <Key>
+            <PropertyRef Name="Naam" />
+          </Key>
+          <Property Name="Naam" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="ProductMerk" Relationship="AppieDB.MerkProductMerk" FromRole="Merk" ToRole="ProductMerk" />
+        </EntityType>
+        <Association Name="AfdelingProduct">
+          <End Type="AppieDB.Afdeling" Role="Afdeling" Multiplicity="0..1" />
+          <End Type="AppieDB.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afdeling">
+              <PropertyRef Name="Naam" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="AfdelingNaam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductMerk" >
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" />
+          <NavigationProperty Name="Product" Relationship="AppieDB.ProductProductMerk" FromRole="ProductMerk" ToRole="Product" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Merk" Relationship="AppieDB.MerkProductMerk" FromRole="ProductMerk" ToRole="Merk" />
+          <Property Name="MerkNaam" Type="String" Nullable="false" />
+          <Property Name="Prijs" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Korting" Relationship="AppieDB.ProductMerkKorting" FromRole="ProductMerk" ToRole="Korting" />
+          <NavigationProperty Name="BoodschappenProduct" Relationship="AppieDB.ProductMerkBoodschappenProduct" FromRole="ProductMerk" ToRole="BoodschappenProduct" />
+          <NavigationProperty Name="ReceptProduct" Relationship="AppieDB.ProductMerkReceptProduct" FromRole="ProductMerk" ToRole="ReceptProduct" />
+        </EntityType>
+        <EntityType Name="Korting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KortingCode" Type="String" Nullable="false" />
+          <Property Name="BeginDatum" Type="DateTime" Nullable="false" />
+          <Property Name="EindDatum" Type="DateTime" Nullable="false" />
+          <Property Name="Percentage" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ProductMerk" Relationship="AppieDB.ProductMerkKorting" FromRole="Korting" ToRole="ProductMerk" />
+          <Property Name="ProductMerkId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BoodschappenLijst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BoodschappenProduct" Relationship="AppieDB.BoodschappenLijstBoodschappenProduct" FromRole="BoodschappenLijst" ToRole="BoodschappenProduct" />
+          <Property Name="TotaalPrijs" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductProductMerk">
+          <End Type="AppieDB.Product" Role="Product" Multiplicity="1" />
+          <End Type="AppieDB.ProductMerk" Role="ProductMerk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductMerk">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerkProductMerk">
+          <End Type="AppieDB.Merk" Role="Merk" Multiplicity="1" />
+          <End Type="AppieDB.ProductMerk" Role="ProductMerk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merk">
+              <PropertyRef Name="Naam" />
+            </Principal>
+            <Dependent Role="ProductMerk">
+              <PropertyRef Name="MerkNaam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductMerkKorting">
+          <End Type="AppieDB.ProductMerk" Role="ProductMerk" Multiplicity="1" />
+          <End Type="AppieDB.Korting" Role="Korting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMerk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Korting">
+              <PropertyRef Name="ProductMerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BoodschappenProduct" >
+          <Key>
+            <PropertyRef Name="BoodschappenLijstId" />
+            <PropertyRef Name="ProductMerkId" />
+          </Key>
+          <NavigationProperty Name="BoodschappenLijst" Relationship="AppieDB.BoodschappenLijstBoodschappenProduct" FromRole="BoodschappenProduct" ToRole="BoodschappenLijst" />
+          <Property Name="BoodschappenLijstId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductMerk" Relationship="AppieDB.ProductMerkBoodschappenProduct" FromRole="BoodschappenProduct" ToRole="ProductMerk" />
+          <Property Name="ProductMerkId" Type="Int32" Nullable="false" />
+          <Property Name="Aantal" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="BoodschappenLijstBoodschappenProduct">
+          <End Type="AppieDB.BoodschappenLijst" Role="BoodschappenLijst" Multiplicity="1" />
+          <End Type="AppieDB.BoodschappenProduct" Role="BoodschappenProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoodschappenLijst">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BoodschappenProduct">
+              <PropertyRef Name="BoodschappenLijstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductMerkBoodschappenProduct">
+          <End Type="AppieDB.ProductMerk" Role="ProductMerk" Multiplicity="1" />
+          <End Type="AppieDB.BoodschappenProduct" Role="BoodschappenProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMerk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BoodschappenProduct">
+              <PropertyRef Name="ProductMerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Recept">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" />
+          <NavigationProperty Name="ReceptProduct" Relationship="AppieDB.ReceptReceptProduct" FromRole="Recept" ToRole="ReceptProduct" />
+        </EntityType>
+        <EntityType Name="ReceptProduct" >
+          <Key>
+            <PropertyRef Name="ReceptId" />
+            <PropertyRef Name="ProductMerkId" />
+          </Key>
+          <NavigationProperty Name="Recept" Relationship="AppieDB.ReceptReceptProduct" FromRole="ReceptProduct" ToRole="Recept" />
+          <Property Name="ReceptId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductMerk" Relationship="AppieDB.ProductMerkReceptProduct" FromRole="ReceptProduct" ToRole="ProductMerk" />
+          <Property Name="ProductMerkId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ReceptReceptProduct">
+          <End Type="AppieDB.Recept" Role="Recept" Multiplicity="1" />
+          <End Type="AppieDB.ReceptProduct" Role="ReceptProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recept">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReceptProduct">
+              <PropertyRef Name="ReceptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductMerkReceptProduct">
+          <End Type="AppieDB.ProductMerk" Role="ProductMerk" Multiplicity="1" />
+          <End Type="AppieDB.ReceptProduct" Role="ReceptProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMerk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReceptProduct">
+              <PropertyRef Name="ProductMerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="AppieDB" />
+        <Alias Key="Target" Value="AppieDB.Store" />
+        <EntityContainerMapping CdmEntityContainer="AppieDBContainer" StorageEntityContainer="AppieDBTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
