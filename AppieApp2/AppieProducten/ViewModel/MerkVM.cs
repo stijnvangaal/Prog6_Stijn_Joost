@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 
 namespace AppieProducten.ViewModel {
-    class MerkVM : ViewModelBase{
+    public class MerkVM : ViewModelBase {
 
         private Merk _Merk;
 

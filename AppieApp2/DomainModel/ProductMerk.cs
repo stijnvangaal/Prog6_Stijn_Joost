@@ -17,8 +17,8 @@ namespace DomainModel
         public ProductMerk()
         {
             this.Korting = new HashSet<Korting>();
-            this.BoodschappenProduct = new HashSet<BoodschappenProduct>();
             this.ReceptProduct = new HashSet<ReceptProduct>();
+            this.BoodschappenProduct = new HashSet<BoodschappenProduct>();
         }
     
         public int Id { get; set; }
@@ -29,7 +29,7 @@ namespace DomainModel
         public virtual Product Product { get; set; }
         public virtual Merk Merk { get; set; }
         public virtual ICollection<Korting> Korting { get; set; }
-        public virtual ICollection<BoodschappenProduct> BoodschappenProduct { get; set; }
         public virtual ICollection<ReceptProduct> ReceptProduct { get; set; }
+        public virtual ICollection<BoodschappenProduct> BoodschappenProduct { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace DomainModel
         }
     
         public int Id { get; set; }
-        public int TotaalPrijs { get; set; }
+        public double TotaalPrijs { get; set; }
     
         public virtual ICollection<BoodschappenProduct> BoodschappenProduct { get; set; }
     }

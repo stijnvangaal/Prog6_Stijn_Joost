@@ -1,4 +1,5 @@
 ﻿using DomainModel;
+using DomainModel.DummyRepos;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,26 @@ using System.Runtime;
 using System.Text;
 
 namespace AppieProducten.ViewModel {
-    class ProductMerkVM : ViewModelBase {
+    public class ProductMerkVM : ViewModelBase {
 
         private ProductMerk _ProductMerk;
 
+        //constructors
         public ProductMerkVM() {
             _ProductMerk = new ProductMerk();
         }
 
         public ProductMerkVM(ProductMerk product) {
             _ProductMerk = product;
+            this.Product = new ProductVM(new DummyProductRepo().GetById(product.Id));
         }
+
+
+        //properties
+
+        public ProductVM Product { get; set; }
+
+        public MerkVM Merk { get; set; }
 
         public int Id {
             get { return _ProductMerk.Id; }

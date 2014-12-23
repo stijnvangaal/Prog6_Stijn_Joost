@@ -74,9 +74,14 @@
     <Compile Include="Recepten.xaml.cs">
       <DependentUpon>Recepten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BoodschappenProductLijstVM.cs" />
+    <Compile Include="ViewModel\BoodschappenProductVM.cs" />
+    <Compile Include="ViewModel\BoodschappenSchermVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MerkVM.cs" />
     <Compile Include="ViewModel\ProductMerkListVM.cs" />
     <Compile Include="ViewModel\ProductMerkVM.cs" />
+    <Compile Include="ViewModel\ProductVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Beheer.xaml">
       <SubType>Designer</SubType>
@@ -134,11 +139,7 @@
       <Name>DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DummyRepos\" />
-    <Folder Include="EntityRepos\" />
-    <Folder Include="IRepos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

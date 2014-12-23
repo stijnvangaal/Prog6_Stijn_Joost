@@ -13,10 +13,10 @@ namespace DomainModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AppieDBEntities : DbContext
+    public partial class AppieDBContainer : DbContext
     {
-        public AppieDBEntities()
-            : base("name=AppieDBEntities")
+        public AppieDBContainer()
+            : base("name=AppieDBContainer")
         {
         }
     
@@ -25,13 +25,14 @@ namespace DomainModel
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Product> ProductSet { get; set; }
         public virtual DbSet<Afdeling> AfdelingSet { get; set; }
-        public virtual DbSet<BoodschappenLijst> BoodschappenLijstSet { get; set; }
-        public virtual DbSet<BoodschappenProduct> BoodschappenProductSet { get; set; }
-        public virtual DbSet<Korting> KortingSet { get; set; }
         public virtual DbSet<Merk> MerkSet { get; set; }
         public virtual DbSet<ProductMerk> ProductMerkSet { get; set; }
-        public virtual DbSet<Product> ProductSet { get; set; }
+        public virtual DbSet<Korting> KortingSet { get; set; }
+        public virtual DbSet<BoodschappenLijst> BoodschappenLijstSet { get; set; }
+        public virtual DbSet<BoodschappenProduct> BoodschappenProductSet { get; set; }
         public virtual DbSet<Recept> ReceptSet { get; set; }
+        public virtual DbSet<ReceptProduct> ReceptProductSet { get; set; }
     }
 }

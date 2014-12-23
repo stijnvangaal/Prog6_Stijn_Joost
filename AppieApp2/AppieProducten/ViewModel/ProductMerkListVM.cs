@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 
 namespace AppieProducten.ViewModel {
-    class ProductMerkListVM : ViewModelBase {
+    public class ProductMerkListVM : ViewModelBase {
 
         public ObservableCollection<ProductMerkVM> boodschappen { get; set; }
     }
