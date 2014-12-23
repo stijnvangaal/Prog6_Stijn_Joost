@@ -1,0 +1,13 @@
+﻿<Window x:Class="AppieProducten.Beheer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Beheer" Height="500" Width="700">
+    <Grid>
+        <Menu>
+            <MenuItem Header="Afsluiten"/>
+            <MenuItem Header="Assortiment"/>
+            <MenuItem Header="Recepten"/>
+            <MenuItem Header="Beheer"/>
+        </Menu>
+    </Grid>
+</Window>

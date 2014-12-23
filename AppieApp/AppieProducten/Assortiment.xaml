@@ -1,0 +1,22 @@
+﻿<Window x:Class="AppieProducten.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Albert Heijn" Height="500" Width="700">
+    <Grid>
+        
+        <Menu Grid.Column="0" IsMainMenu="True">
+            <MenuItem Header="Bestand">
+                <MenuItem Header="Afsluiten"/>
+            </MenuItem>
+            <MenuItem Header="Assortiment"/>
+            <MenuItem Header="Recepten"/>
+            <MenuItem Header="Beheer">
+                <MenuItem Header="Producten"/>
+                <MenuItem Header="Merken"/>
+                <MenuItem Header="Afdeling"/>
+                <MenuItem Header="Kortingen"/>
+            </MenuItem>
+        </Menu>
+        
+    </Grid>
+</Window>

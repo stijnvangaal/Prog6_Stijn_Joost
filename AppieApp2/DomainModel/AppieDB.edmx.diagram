@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d897a52859ab49c6ab686a932d2f7a52" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="AppieDBModel.Product" Width="1.5" PointX="4.875" PointY="8" />
+        <EntityTypeShape EntityType="AppieDBModel.Afdeling" Width="1.5" PointX="2" PointY="9.5" />
+        <EntityTypeShape EntityType="AppieDBModel.Merk" Width="1.5" PointX="5" PointY="1" />
+        <EntityTypeShape EntityType="AppieDBModel.ProductMerk" Width="1.5" PointX="4.625" PointY="4.125" />
+        <EntityTypeShape EntityType="AppieDBModel.Korting" Width="1.5" PointX="8.125" PointY="1.5" />
+        <EntityTypeShape EntityType="AppieDBModel.BoodschappenLijst" Width="1.5" PointX="9.75" PointY="7.125" />
+        <EntityTypeShape EntityType="AppieDBModel.BoodschappenProduct" Width="1.5" PointX="7.25" PointY="6.25" />
+        <EntityTypeShape EntityType="AppieDBModel.Recept" Width="1.5" PointX="1.25" PointY="1.125" />
+        <EntityTypeShape EntityType="AppieDBModel.ReceptProduct" Width="1.5" PointX="1.875" PointY="4.5" />
+        <AssociationConnector Association="AppieDBModel.AfdelingProduct" />
+        <AssociationConnector Association="AppieDBModel.ProductProductMerk" />
+        <AssociationConnector Association="AppieDBModel.MerkProductMerk" />
+        <AssociationConnector Association="AppieDBModel.ProductMerkKorting" />
+        <AssociationConnector Association="AppieDBModel.BoodschappenLijstBoodschappenProduct" />
+        <AssociationConnector Association="AppieDBModel.ReceptReceptProduct" />
+        <AssociationConnector Association="AppieDBModel.ProductMerkBoodschappenProduct" />
+        <AssociationConnector Association="AppieDBModel.ProductMerkReceptProduct" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
