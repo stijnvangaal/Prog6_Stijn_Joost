@@ -47,6 +47,10 @@ namespace AppieProducten.ViewModel
             get { return ServiceLocator.Current.GetInstance<BoodschappenSchermVM>(); }
         }
 
+        public BeheerSchermVM Beheer {
+            get { return ServiceLocator.Current.GetInstance<BeheerSchermVM>(); }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

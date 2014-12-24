@@ -59,10 +59,12 @@
     <Compile Include="BoodschappenProduct.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DummyRepos\DummyAfdelingRepo.cs" />
     <Compile Include="DummyRepos\DummyBoodschappenLijstRepo.cs" />
     <Compile Include="DummyRepos\DummyBoodschappenProductRepo.cs" />
     <Compile Include="DummyRepos\DummyProductMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductRepo.cs" />
+    <Compile Include="IRepos\IAfdelingRepo.cs" />
     <Compile Include="IRepos\IBoodschappenLijstRepo.cs" />
     <Compile Include="IRepos\IBoodschappenProductRepo.cs" />
     <Compile Include="IRepos\IProductMerkRepo.cs" />
