@@ -33,6 +33,7 @@ namespace AppieProducten.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<BoodschappenSchermVM>();
+            SimpleIoc.Default.Register<BeheerSchermVM>();
         }
 
         public MainViewModel Main

@@ -20,7 +20,7 @@ namespace AppieProducten.ViewModel {
 
         public ProductMerkVM(ProductMerk product) {
             _ProductMerk = product;
-            this.Product = new ProductVM(new DummyProductRepo().GetById(product.Id));
+            this.Product = new ProductVM(new DummyProductRepo().GetById(product.ProductId));
         }
 
 

@@ -74,12 +74,16 @@
     <Compile Include="Recepten.xaml.cs">
       <DependentUpon>Recepten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AfdelingLijstVM.cs" />
+    <Compile Include="ViewModel\AfdelingVM.cs" />
     <Compile Include="ViewModel\BeheerSchermVM.cs" />
     <Compile Include="ViewModel\BoodschappenProductLijstVM.cs" />
     <Compile Include="ViewModel\BoodschappenProductVM.cs" />
     <Compile Include="ViewModel\BoodschappenSchermVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MerkListVM.cs" />
     <Compile Include="ViewModel\MerkVM.cs" />
+    <Compile Include="ViewModel\ProductListVM.cs" />
     <Compile Include="ViewModel\ProductMerkListVM.cs" />
     <Compile Include="ViewModel\ProductMerkVM.cs" />
     <Compile Include="ViewModel\ProductVM.cs" />

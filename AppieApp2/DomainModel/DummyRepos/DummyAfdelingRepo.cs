@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 namespace DomainModel.DummyRepos {
-    class DummyAfdelingRepo : IAfdelingRepo {
+    public class DummyAfdelingRepo : IAfdelingRepo {
         private List<Afdeling> afdelingen;
 
         public DummyAfdelingRepo() {

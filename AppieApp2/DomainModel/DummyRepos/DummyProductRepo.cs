@@ -10,15 +10,15 @@ namespace DomainModel.DummyRepos {
 
         public DummyProductRepo() {
             producten = new List<Product> {
-                new Product{ Id = 1, Naam = "Kaas"},
-                new Product{ Id = 2, Naam = "Brood"},
-                new Product{ Id = 3, Naam = "Bier"},
-                new Product{ Id = 4, Naam = "MeerBier"}
+                new Product{ Id = 1, Naam = "Kaas", AfdelingNaam = "Zuivel"},
+                new Product{ Id = 2, Naam = "Brood", AfdelingNaam = "Brood"},
+                new Product{ Id = 3, Naam = "Bier", AfdelingNaam = "Bier"},
+                new Product{ Id = 4, Naam = "MeerBier", AfdelingNaam = "Bier"}
             };
         }
 
         public IEnumerable<Product> GetAll() {
-            throw new NotImplementedException();
+            return producten;
         }
 
         public Product GetById(int id) {

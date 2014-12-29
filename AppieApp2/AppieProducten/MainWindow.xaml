@@ -1,13 +1,87 @@
 ﻿<Window x:Class="AppieProducten.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="500" Width="700">
+        Title="Assortiment" Height="500" Width="700"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
     <Grid>
-        <Menu>
-            <MenuItem Header="Afsluiten"/>
-            <MenuItem Header="Assortiment"/>
-            <MenuItem Header="Recepten"/>
-            <MenuItem Header="Beheer"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- menu -->
+        <Menu Grid.Column="0" Grid.Row="0">
+            <MenuItem Header="Afsluiten" Click="MenuItem_Click"/>
+            <MenuItem Header="Assortiment" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Recepten" Click="MenuItem_Click_2"/>
+            <MenuItem Header="Beheer" Click="MenuItem_Click_3"/>
         </Menu>
+        
+        <!-- sorteer opties -->
+        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Afdeling sort-->
+            <Border Grid.Column="0" Grid.Row="0" Width="100" Margin="100,5,0,0">
+                <StackPanel>
+                    <Label Content="Afdeling"/>
+                    <ComboBox ItemsSource="{Binding Path=afdelingLijstVM.afdelingen}"
+                                          DisplayMemberPath="Naam" 
+                                          SelectedValuePath="Naam" 
+                                          SelectedItem="{Binding Path=productMerkListVM.AfdelingNaam}"
+                                          SelectedValue="{Binding Path=productMerkListVM.AfdelingNaam}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Product sort-->
+            <Border Grid.Column="1" Grid.Row="0" Width="100" Margin="50,5,0,0">
+                <StackPanel>
+                    <Label Content="Product"/>
+                    <ComboBox ItemsSource="{Binding Path=productListVM.producten.Naam}"
+                                          DisplayMemberPath="Naam" 
+                                          SelectedValuePath="Naam" 
+                                          SelectedItem="{Binding Path=productMerkListVM.ProductNaam}"
+                                          SelectedValue="{Binding Path=productMerkListVM.ProductNaam}" />
+                </StackPanel>
+            </Border>
+
+            <!-- merk sort-->
+            <Border Grid.Column="2" Grid.Row="0" Width="100" Margin="50,5,0,0">
+                <StackPanel>
+                    <Label Content="Merk"/>
+                    <ComboBox ItemsSource="{Binding Path=merkListVM.merken}"
+                                          DisplayMemberPath="Naam" 
+                                          SelectedValuePath="Naam" 
+                                          SelectedItem="{Binding Path=productMerkListVM.MerkNaam}"
+                                          SelectedValue="{Binding Path=productMerkListVM.MerkNaam}" />
+                </StackPanel>
+            </Border>
+            
+            <Button Grid.Column="3" Grid.Row="0" Margin="50,5,0,0" Width="100" Content="Sorteer"/>
+        </Grid>
+        
+        <!-- Producten Lijst-->
+        <DataGrid Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding productMerkListVM.SortedProducten}" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding Product.AfdelingNaam}"/>
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.Naam}"/>
+                <DataGridTextColumn Header="Merk" Binding="{Binding MerkNaam}"/>
+                <DataGridTextColumn Header="Prijs p.s." Binding="{Binding Prijs}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

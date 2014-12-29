@@ -7,10 +7,10 @@
        
         
         <Menu>
-            <MenuItem Header="Afsluiten"/>
-            <MenuItem Header="Assortiment"/>
-            <MenuItem Header="Recepten"/>
-            <MenuItem Header="Beheer"/>
+            <MenuItem Header="Afsluiten" Click="MenuItem_Click"/>
+            <MenuItem Header="Assortiment" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Recepten" Click="MenuItem_Click_2"/>
+            <MenuItem Header="Beheer" Click="MenuItem_Click_3"/>
         </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
