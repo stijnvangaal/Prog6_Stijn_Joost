@@ -16,6 +16,7 @@ namespace DomainModel
     {
         public int ReceptId { get; set; }
         public int ProductMerkId { get; set; }
+        public int Aantal { get; set; }
     
         public virtual Recept Recept { get; set; }
         public virtual ProductMerk ProductMerk { get; set; }

@@ -10,7 +10,9 @@ using System.Text;
 namespace AppieProducten.ViewModel {
     public class ProductListVM : ViewModelBase{
 
-        public ObservableCollection<ProductVM> producten;
+        public ObservableCollection<ProductVM> producten { get; set; }
+
+        public ObservableCollection<ProductVM> ComboBoxProducten { get; set; }
 
         private IProductRepo proRepo;
 
@@ -18,6 +20,9 @@ namespace AppieProducten.ViewModel {
             proRepo = new DummyProductRepo();
 
             producten = new ObservableCollection<ProductVM>(proRepo.GetAll().ToList().Select(m => new ProductVM(m)));
+            ComboBoxProducten = new ObservableCollection<ProductVM>();
+            ComboBoxProducten.Add(new ProductVM { Naam = "Leeg" });
+            foreach (ProductVM p in producten) { ComboBoxProducten.Add(p); }
         }
     }
 }

@@ -16,6 +16,8 @@ namespace AppieProducten {
     /// Interaction logic for Recepten.xaml
     /// </summary>
     public partial class Recepten : Window {
+
+        public Boodschappen bsView { get; set; }
         public Recepten() {
             InitializeComponent();
         }
@@ -25,7 +27,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e) {
-            var view = new MainWindow();
+            var view = new MainWindow { bsView = this.bsView };
             view.Top = 200;
             view.Left = 400;
             this.Close();
@@ -33,7 +35,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) {
-            var view = new Recepten();
+            var view = new Recepten { bsView = this.bsView };
             view.Top = 200;
             view.Left = 400;
             this.Close();
@@ -41,7 +43,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) {
-            var view = new Beheer();
+            var view = new Beheer { bsView = this.bsView };
             view.Top = 200;
             view.Left = 400;
             this.Close();

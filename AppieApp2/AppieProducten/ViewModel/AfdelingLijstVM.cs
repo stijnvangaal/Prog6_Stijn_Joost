@@ -12,12 +12,17 @@ namespace AppieProducten.ViewModel {
 
         public ObservableCollection<AfdelingVM> afdelingen { get; set; }
 
+        public ObservableCollection<AfdelingVM> ComboboxAfdelingen { get; set; }
+
         private IAfdelingRepo afRepo;
 
 
         public AfdelingLijstVM() {
             afRepo = new DummyAfdelingRepo();
             afdelingen = new ObservableCollection<AfdelingVM>(afRepo.GetAll().ToList().Select(m => new AfdelingVM(m)));
+            ComboboxAfdelingen = new ObservableCollection<AfdelingVM>();
+            ComboboxAfdelingen.Add(new AfdelingVM { Naam = "Leeg" });
+            foreach (AfdelingVM a in afdelingen) { ComboboxAfdelingen.Add(a); }
         }
     }
 }

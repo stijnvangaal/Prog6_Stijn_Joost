@@ -18,7 +18,7 @@ namespace AppieProducten {
     /// </summary>
     public partial class MainWindow : Window {
 
-        
+        public Boodschappen bsView { get; set; }
 
         public MainWindow() {
             this.Top = 200;
@@ -31,7 +31,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e) {
-            var view = new MainWindow();
+            var view = new MainWindow { bsView = this.bsView };
             view.Top = 200;
             view.Left = 400;
             this.Close();
@@ -39,7 +39,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) {
-            var view = new Recepten();
+            var view = new Recepten { bsView = this.bsView };
             view.Top = 200;
             view.Left = 400;
             this.Close();
@@ -47,11 +47,15 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) {
-            var view = new Beheer();
+            var view = new Beheer { bsView = this.bsView };
             view.Top = 200;
             view.Left = 400;
             this.Close();
             view.Show(); 
+        }
+
+        private void addProduct(object sender, RoutedEventArgs e) {
+            
         }
     }
 }

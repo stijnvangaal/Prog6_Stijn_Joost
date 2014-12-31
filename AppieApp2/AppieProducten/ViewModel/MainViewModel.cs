@@ -4,6 +4,7 @@ using DomainModel.IRepos;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace AppieProducten.ViewModel
 {
@@ -19,7 +20,6 @@ namespace AppieProducten.ViewModel
         public AfdelingLijstVM afdelingLijstVM { get; set; }
         public ProductListVM productListVM { get; set; }
         public MerkListVM merkListVM { get; set; }
-
         public MainViewModel()
         {
             this.productMerkListVM = new ProductMerkListVM();
