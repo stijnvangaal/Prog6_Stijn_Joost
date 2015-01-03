@@ -81,6 +81,8 @@
     <Compile Include="ViewModel\BoodschappenProductLijstVM.cs" />
     <Compile Include="ViewModel\BoodschappenProductVM.cs" />
     <Compile Include="ViewModel\BoodschappenSchermVM.cs" />
+    <Compile Include="ViewModel\KortingListVM.cs" />
+    <Compile Include="ViewModel\KortingVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MerkListVM.cs" />
     <Compile Include="ViewModel\MerkVM.cs" />

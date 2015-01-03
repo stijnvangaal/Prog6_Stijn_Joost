@@ -28,7 +28,7 @@ namespace AppieProducten.ViewModel {
         public int BoodschappenLijstId {
             get { return _BoodschappenProduct.BoodschappenLijstId; }
             set { this._BoodschappenProduct.BoodschappenLijstId = value;
-            RaisePropertyChanged("BoodschappenLijstId");
+            RaisePropertyChanged(() => BoodschappenLijstId);
             }
         }
 
@@ -36,7 +36,7 @@ namespace AppieProducten.ViewModel {
             get { return _BoodschappenProduct.ProductMerkId; }
             set {
                 this._BoodschappenProduct.ProductMerkId = value;
-                RaisePropertyChanged("ProductMerkId");
+                RaisePropertyChanged(() => ProductMerkId);
             }
         }
 
@@ -44,12 +44,18 @@ namespace AppieProducten.ViewModel {
             get { return _BoodschappenProduct.Aantal; }
             set {
                 this._BoodschappenProduct.Aantal = value;
-                RaisePropertyChanged("Aantal");
+                RaisePropertyChanged(() => Aantal);
+                RaisePropertyChanged(() => PrijsProducten);
             }
         }
 
         public ProductMerkVM ProductMerk { get; set; }
 
-        public double PrijsProducten { get { return (ProductMerk.Prijs * Aantal); } }
+        public double PrijsProducten { 
+            get { return (ProductMerk.Prijs * Aantal); }
+            set { ProductMerk.Prijs = value;
+            RaisePropertyChanged(() => PrijsProducten);
+            }
+        }
     }
 }

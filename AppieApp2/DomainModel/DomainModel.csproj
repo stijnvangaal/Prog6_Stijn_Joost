@@ -62,12 +62,14 @@
     <Compile Include="DummyRepos\DummyAfdelingRepo.cs" />
     <Compile Include="DummyRepos\DummyBoodschappenLijstRepo.cs" />
     <Compile Include="DummyRepos\DummyBoodschappenProductRepo.cs" />
+    <Compile Include="DummyRepos\DummyKortingRepo.cs" />
     <Compile Include="DummyRepos\DummyMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductRepo.cs" />
     <Compile Include="IRepos\IAfdelingRepo.cs" />
     <Compile Include="IRepos\IBoodschappenLijstRepo.cs" />
     <Compile Include="IRepos\IBoodschappenProductRepo.cs" />
+    <Compile Include="IRepos\IKortingRepo.cs" />
     <Compile Include="IRepos\IMerkRepo.cs" />
     <Compile Include="IRepos\IProductMerkRepo.cs" />
     <Compile Include="IRepos\IProductRepo.cs" />

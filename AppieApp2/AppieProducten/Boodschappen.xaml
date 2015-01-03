@@ -36,32 +36,40 @@
         <!-- Korting-->
         <Grid Grid.Column="0" Grid.Row="2" Height="30">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <Border Grid.Column="0">
-                <TextBox Text="KortingsCode" Margin="5,0,0,0"/>
+                <TextBlock Text="KortingsCode" Margin="5,0,0,0" />
             </Border>
             <Border Grid.Column="1">
-                <Button Content="verstuur" Margin="0,0,5,0"/>
+                <TextBox Text="{Binding BoodschappenProductLijstVM.KortingCode}" Margin="5,0,0,0" />
+            </Border>
+            <Border Grid.Column="2">
+                <Button Content="verstuur" Margin="0,0,5,0" Command="{Binding BoodschappenProductLijstVM.AddKorting}"/>
             </Border>
         </Grid>
         
         <!-- Totaal prijs -->
-        <Grid Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">
+        <Grid Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Totaal Prijs: €" Margin="0,0,40,0"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Text="{Binding BoodschappenProductLijstVM.TotaalPrijs}" Margin="0,0,10,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="KortingsCodes: " Margin="0,0,10,0"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding BoodschappenProductLijstVM.KortingAantal}" Margin="0,0,125,0"/>
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="Totaal Prijs: €" Margin="0,0,40,0"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding BoodschappenProductLijstVM.TotaalPrijs}" Margin="0,0,10,0"/>
         </Grid>
 
         <!-- Opslaan -->
