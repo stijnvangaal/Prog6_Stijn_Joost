@@ -18,10 +18,13 @@ namespace AppieProducten.ViewModel {
 
         public int LijstId { get; set; }
 
+        public double TotaalPrijs {
+            get { return CalcTotaal(); } 
+        }
+
         public ObservableCollection<BoodschappenProductVM> BoodschappenLijst { get; set; }
 
         public BoodschappenProductLijstVM() {
-            LijstId = 1;
             boodschappenRepo = new DummyBoodschappenProductRepo();
 
             BoodschappenLijst = new ObservableCollection<BoodschappenProductVM>(boodschappenRepo.GetAllById(LijstId).ToList().Select(m => new BoodschappenProductVM(m)));
@@ -29,11 +32,24 @@ namespace AppieProducten.ViewModel {
 
         public Boolean addProduct(ProductMerkVM product) {
             foreach (BoodschappenProductVM b in BoodschappenLijst) {
-                if (b.ProductMerkId == product.Id) { b.Aantal++; return true; }
+                if (b.ProductMerkId == product.Id) { 
+                    b.Aantal++;
+                    RaisePropertyChanged(() => TotaalPrijs);
+                    return true; }
             }
             BoodschappenLijst.Add(new BoodschappenProductVM { ProductMerkId = product.Id, BoodschappenLijstId = LijstId, ProductMerk = product, Aantal = 1 });
-            RaisePropertyChanged(() => BoodschappenLijst);
+            RaisePropertyChanged(() => TotaalPrijs);
             return true;
+        }
+
+        private double CalcTotaal() {
+            double totaal = 0;
+
+            foreach (BoodschappenProductVM b in BoodschappenLijst) {
+                totaal += b.PrijsProducten;
+            }
+
+            return totaal;
         }
     }
 }
