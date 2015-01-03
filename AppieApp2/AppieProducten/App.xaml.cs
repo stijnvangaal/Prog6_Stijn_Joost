@@ -16,7 +16,7 @@ namespace AppieProducten {
 
         void App_Startup(object sender, StartupEventArgs e) {
             Boodschappen = new Boodschappen();
-            MainWindow = new MainWindow { bsView = Boodschappen };
+            MainWindow = new MainWindow();
 
             Boodschappen.Top = 150;
             Boodschappen.Left = 1100;

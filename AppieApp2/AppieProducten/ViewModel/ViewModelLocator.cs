@@ -31,6 +31,17 @@ namespace AppieProducten.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            if (ViewModelBase.IsInDesignModeStatic) {
+                //get dummy
+            }
+            else {
+                //get entity
+            }
+
+            //lijsten
+            //SimpleIoc.Default.Register<BoodschappenProductLijstVM>();
+
+            //windows
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<BoodschappenSchermVM>();
             SimpleIoc.Default.Register<BeheerSchermVM>();

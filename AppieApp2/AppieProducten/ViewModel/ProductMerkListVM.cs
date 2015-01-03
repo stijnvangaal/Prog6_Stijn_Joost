@@ -16,6 +16,7 @@ namespace AppieProducten.ViewModel {
 
         public ObservableCollection<ProductMerkVM> SortedProducten { get; set; }
 
+        public ProductMerkVM SelectedProduct { get; set; }
 
         private IProductMerkRepo PMRepo;
 

@@ -16,8 +16,6 @@ namespace AppieProducten {
     /// Interaction logic for Beheer.xaml
     /// </summary>
     public partial class Beheer : Window {
-
-        public Boodschappen bsView { get; set; }
         public Beheer() {
             InitializeComponent();
         }
@@ -27,7 +25,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e) {
-            var view = new MainWindow { bsView = this.bsView };
+            var view = new MainWindow();
             view.Top = 200;
             view.Left = 400;
             this.Close();
@@ -35,7 +33,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) {
-            var view = new Recepten { bsView = this.bsView };
+            var view = new Recepten();
             view.Top = 200;
             view.Left = 400;
             this.Close();
@@ -43,7 +41,7 @@ namespace AppieProducten {
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) {
-            var view = new Beheer { bsView = this.bsView };
+            var view = new Beheer();
             view.Top = 200;
             view.Left = 400;
             this.Close();

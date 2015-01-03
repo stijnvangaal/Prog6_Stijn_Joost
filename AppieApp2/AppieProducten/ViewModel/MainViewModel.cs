@@ -2,6 +2,7 @@ using DomainModel;
 using DomainModel.DummyRepos;
 using DomainModel.IRepos;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -16,16 +17,30 @@ namespace AppieProducten.ViewModel
         /// </summary>
         /// 
 
+        //ViewModels
         public ProductMerkListVM productMerkListVM { get; set; }
         public AfdelingLijstVM afdelingLijstVM { get; set; }
         public ProductListVM productListVM { get; set; }
         public MerkListVM merkListVM { get; set; }
-        public MainViewModel()
+        public BoodschappenSchermVM BoodschappenSchermVM { get; set; }
+
+        //Commands
+        public ICommand AddProduct { get; set; }
+
+        public MainViewModel(BoodschappenSchermVM boodschappen)
         {
             this.productMerkListVM = new ProductMerkListVM();
             this.afdelingLijstVM = new AfdelingLijstVM();
             this.productListVM = new ProductListVM();
             this.merkListVM = new MerkListVM();
+            this.BoodschappenSchermVM = boodschappen;
+
+            AddProduct = new RelayCommand(AddSelectedProduct);
+        }
+
+        public void AddSelectedProduct() {
+            BoodschappenSchermVM.BoodschappenProductLijstVM.addProduct(productMerkListVM.SelectedProduct);
+            RaisePropertyChanged(() => BoodschappenSchermVM.BoodschappenProductLijstVM.BoodschappenLijst);
         }
     }
 }

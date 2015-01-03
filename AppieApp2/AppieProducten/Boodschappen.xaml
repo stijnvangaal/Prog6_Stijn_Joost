@@ -16,7 +16,7 @@
 
         <!-- Button leeg maken-->
         <Border BorderThickness="2" Grid.Column="0" Grid.Row="0">
-            <Button Content="Leeg Maken" Width="100"/>
+            <Button Content="Leeg Maken" Width="100" Command="{Binding BoodschappenProductLijstVM.test}"/>
         </Border>
         
         <!--BoodSchappen Lijst-->

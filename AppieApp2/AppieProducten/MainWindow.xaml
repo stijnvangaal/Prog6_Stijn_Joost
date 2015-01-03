@@ -12,6 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!-- menu -->
@@ -74,21 +75,19 @@
         </Grid>
         
         <!-- Producten Lijst-->
-        <DataGrid Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding productMerkListVM.SortedProducten}" Margin="5">
+        <DataGrid Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding productMerkListVM.SelectedProduct}" ItemsSource="{Binding productMerkListVM.SortedProducten}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Afdeling" Binding="{Binding Product.AfdelingNaam}"/>
                 <DataGridTextColumn Header="Product" Binding="{Binding Product.Naam}"/>
                 <DataGridTextColumn Header="Merk" Binding="{Binding MerkNaam}"/>
                 <DataGridTextColumn Header="Prijs p.s." Binding="{Binding Prijs}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Toevoegen" Margin="-2"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <Border Grid.Column="0" Grid.Row="3">
+            <Button Content="Toevoegen" Margin="-2" Command="{Binding AddProduct}"/>
+            
+        </Border>
 
     </Grid>
 </Window>

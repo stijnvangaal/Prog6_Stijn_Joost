@@ -23,6 +23,9 @@ namespace AppieProducten.ViewModel {
             this.Product = new ProductVM(new DummyProductRepo().GetById(product.ProductId));
         }
 
+        public ProductMerk ToProductMerk() {
+            return _ProductMerk;
+        }
 
         //properties
 
