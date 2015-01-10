@@ -55,20 +55,20 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding AfdelingLijstVM.SelectedAfdeling}" Margin="5">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Afdeling" Binding="{Binding}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Afdeling" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <TextBox />
+                                <TextBox Text="{Binding AfdelingLijstVM.SearchString}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Search" />
+                                <Button Content="Search" Command="{Binding AfdelingLijstVM.Search}"/>
                             </Border>
                         </Grid>
                         
@@ -86,7 +86,7 @@
                             </Grid.RowDefinitions>
                             
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="1">
-                                <TextBox />
+                                <TextBox Text="{Binding AfdelingLijstVM.SelectedAfdeling.Naam}"/>
                             </Border>
                             
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
@@ -162,20 +162,20 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding AfdelingLijstVM.SelectedAfdeling}" Margin="5">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Afdeling" Binding="{Binding}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Afdeling" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <TextBox />
+                                <TextBox Text="{Binding AfdelingLijstVM.SearchString}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Search" />
+                                <Button Content="Search" Command="{Binding AfdelingLijstVM.Search}"/>
                             </Border>
                         </Grid>
 
@@ -193,7 +193,7 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Product in Afdeling" Binding="{Binding}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>

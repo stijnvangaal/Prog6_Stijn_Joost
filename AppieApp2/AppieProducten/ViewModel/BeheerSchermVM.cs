@@ -7,8 +7,15 @@ using System.Text;
 namespace AppieProducten.ViewModel{
     public class BeheerSchermVM : ViewModelBase{
 
+        public AfdelingLijstVM AfdelingLijstVM { get; set; }
+        public ProductListVM ProductListVM { get; set; }
+
+        public BeheerSchermVM() {
+            this.AfdelingLijstVM = new AfdelingLijstVM();
+            this.ProductListVM = new ProductListVM();
 
 
+        }
 
     }
 }
