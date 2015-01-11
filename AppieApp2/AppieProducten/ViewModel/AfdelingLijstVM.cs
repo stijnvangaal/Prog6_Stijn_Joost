@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using DomainModel.EntityRepos;
 
 namespace AppieProducten.ViewModel {
     public class AfdelingLijstVM : ViewModelBase{
@@ -51,7 +52,14 @@ namespace AppieProducten.ViewModel {
 
         // Constuctor
         public AfdelingLijstVM() {
-            afRepo = new DummyAfdelingRepo();
+            if (ViewModelBase.IsInDesignModeStatic) {
+                afRepo = new DummyAfdelingRepo();
+            }
+            else {
+                afRepo = new EntityAfdelingRepo();
+            }
+
+
             AllAfdelingen = new ObservableCollection<AfdelingVM>(afRepo.GetAll().ToList().Select(m => new AfdelingVM(m)));
             Afdelingen = AllAfdelingen;
             ComboboxAfdelingen = new ObservableCollection<AfdelingVM>();

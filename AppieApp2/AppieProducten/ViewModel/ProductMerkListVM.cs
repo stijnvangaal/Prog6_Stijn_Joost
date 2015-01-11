@@ -1,4 +1,5 @@
 ﻿using DomainModel.DummyRepos;
+using DomainModel.EntityRepos;
 using DomainModel.IRepos;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -60,7 +61,12 @@ namespace AppieProducten.ViewModel {
         public string MerkNaam { get; set; }
 
         public ProductMerkListVM() {
-            PMRepo = new DummyProductMerkRepo();
+            if (ViewModelBase.IsInDesignModeStatic) {
+                PMRepo = new DummyProductMerkRepo();
+            }
+            else {
+                PMRepo = new EntityProductMerkRepo();
+            }
 
             _selectedAfdeling = new AfdelingVM { Naam = "Leeg" };
             _selectedProduct = new ProductVM { Naam = "Leeg" };
@@ -122,11 +128,21 @@ namespace AppieProducten.ViewModel {
         }
 
         public String getAfdeling(int productId) {
-            return new DummyProductRepo().GetById(productId).AfdelingNaam;
+            if (ViewModelBase.IsInDesignModeStatic) {
+                return new DummyProductRepo().GetById(productId).AfdelingNaam;
+            }
+            else {
+                return new EntityProductRepo().GetById(productId).AfdelingNaam;
+            }
         }
 
         public String getProductName(int productId) {
-            return new DummyProductRepo().GetById(productId).Naam;
+            if (ViewModelBase.IsInDesignModeStatic) {
+                return new DummyProductRepo().GetById(productId).Naam;
+            }
+            else {
+                return new EntityProductRepo().GetById(productId).Naam;
+            }
         }
     }
 }

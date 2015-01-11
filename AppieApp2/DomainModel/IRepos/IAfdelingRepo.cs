@@ -10,5 +10,6 @@ namespace DomainModel.IRepos {
         void Create(Afdeling obj);
         void Delete(Afdeling obj);
         void Update(Afdeling obj, String Name);
+        void SaveChanges();
     }
 }

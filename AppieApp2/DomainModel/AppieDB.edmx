@@ -6,49 +6,49 @@
     <edmx:StorageModels>
     <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Model1StoreContainer">
-    <EntitySet Name="ProductSet1" EntityType="Model1.Store.ProductSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AfdelingSet1" EntityType="Model1.Store.AfdelingSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="MerkSet1" EntityType="Model1.Store.MerkSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProductMerkSet1" EntityType="Model1.Store.ProductMerkSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KortingSet1" EntityType="Model1.Store.KortingSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BoodschappenLijstSet1" EntityType="Model1.Store.BoodschappenLijstSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BoodschappenProductSet1" EntityType="Model1.Store.BoodschappenProductSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ReceptSet1" EntityType="Model1.Store.ReceptSet1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ReceptProductSet1" EntityType="Model1.Store.ReceptProductSet1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductSet" EntityType="Model1.Store.ProductSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AfdelingSet" EntityType="Model1.Store.AfdelingSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MerkSet" EntityType="Model1.Store.MerkSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductMerkSet" EntityType="Model1.Store.ProductMerkSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KortingSet" EntityType="Model1.Store.KortingSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BoodschappenLijstSet" EntityType="Model1.Store.BoodschappenLijstSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BoodschappenProductSet" EntityType="Model1.Store.BoodschappenProductSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReceptSet" EntityType="Model1.Store.ReceptSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReceptProductSet" EntityType="Model1.Store.ReceptProductSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="AfdelingProduct" Association="Model1.Store.AfdelingProduct">
-      <End Role="Afdeling" EntitySet="AfdelingSet1" />
-      <End Role="Product" EntitySet="ProductSet1" />
+      <End Role="Afdeling" EntitySet="AfdelingSet" />
+      <End Role="Product" EntitySet="ProductSet" />
     </AssociationSet>
     <AssociationSet Name="ProductProductMerk" Association="Model1.Store.ProductProductMerk">
-      <End Role="Product" EntitySet="ProductSet1" />
-      <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
+      <End Role="Product" EntitySet="ProductSet" />
+      <End Role="ProductMerk" EntitySet="ProductMerkSet" />
     </AssociationSet>
     <AssociationSet Name="MerkProductMerk" Association="Model1.Store.MerkProductMerk">
-      <End Role="Merk" EntitySet="MerkSet1" />
-      <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
+      <End Role="Merk" EntitySet="MerkSet" />
+      <End Role="ProductMerk" EntitySet="ProductMerkSet" />
     </AssociationSet>
     <AssociationSet Name="ProductMerkKorting" Association="Model1.Store.ProductMerkKorting">
-      <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
-      <End Role="Korting" EntitySet="KortingSet1" />
+      <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+      <End Role="Korting" EntitySet="KortingSet" />
     </AssociationSet>
     <AssociationSet Name="BoodschappenLijstBoodschappenProduct" Association="Model1.Store.BoodschappenLijstBoodschappenProduct">
-      <End Role="BoodschappenLijst" EntitySet="BoodschappenLijstSet1" />
-      <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet1" />
+      <End Role="BoodschappenLijst" EntitySet="BoodschappenLijstSet" />
+      <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet" />
     </AssociationSet>
     <AssociationSet Name="ReceptReceptProduct" Association="Model1.Store.ReceptReceptProduct">
-      <End Role="Recept" EntitySet="ReceptSet1" />
-      <End Role="ReceptProduct" EntitySet="ReceptProductSet1" />
+      <End Role="Recept" EntitySet="ReceptSet" />
+      <End Role="ReceptProduct" EntitySet="ReceptProductSet" />
     </AssociationSet>
     <AssociationSet Name="ProductMerkReceptProduct" Association="Model1.Store.ProductMerkReceptProduct">
-      <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
-      <End Role="ReceptProduct" EntitySet="ReceptProductSet1" />
+      <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+      <End Role="ReceptProduct" EntitySet="ReceptProductSet" />
     </AssociationSet>
     <AssociationSet Name="ProductMerkBoodschappenProduct" Association="Model1.Store.ProductMerkBoodschappenProduct">
-      <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
-      <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet1" />
+      <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+      <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="ProductSet1">
+  <EntityType Name="ProductSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -56,19 +56,19 @@
     <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AfdelingNaam" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
-  <EntityType Name="AfdelingSet1">
+  <EntityType Name="AfdelingSet">
     <Key>
       <PropertyRef Name="Naam" />
     </Key>
     <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="MerkSet1">
+  <EntityType Name="MerkSet">
     <Key>
       <PropertyRef Name="Naam" />
     </Key>
     <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="ProductMerkSet1">
+  <EntityType Name="ProductMerkSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -77,7 +77,7 @@
     <Property Name="MerkNaam" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prijs" Type="float" Nullable="false" />
   </EntityType>
-  <EntityType Name="KortingSet1">
+  <EntityType Name="KortingSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -88,30 +88,30 @@
     <Property Name="Percentage" Type="float" Nullable="false" />
     <Property Name="ProductMerkId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="BoodschappenLijstSet1">
+  <EntityType Name="BoodschappenLijstSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TotaalPrijs" Type="float" Nullable="false" />
   </EntityType>
-  <EntityType Name="BoodschappenProductSet1">
+  <EntityType Name="BoodschappenProductSet">
     <Key>
       <PropertyRef Name="BoodschappenLijstId" />
-      <PropertyRef Name="ProductMerkId1" />
+      <PropertyRef Name="ProductMerkId" />
     </Key>
     <Property Name="BoodschappenLijstId" Type="int" Nullable="false" />
     <Property Name="Aantal" Type="int" Nullable="false" />
-    <Property Name="ProductMerkId1" Type="int" Nullable="false" />
+    <Property Name="ProductMerkId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="ReceptSet1">
+  <EntityType Name="ReceptSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="ReceptProductSet1">
+  <EntityType Name="ReceptProductSet">
     <Key>
       <PropertyRef Name="ReceptId" />
       <PropertyRef Name="ProductMerkId" />
@@ -121,8 +121,8 @@
     <Property Name="Aantal" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="AfdelingProduct">
-    <End Role="Afdeling" Type="Model1.Store.AfdelingSet1" Multiplicity="0..1" />
-    <End Role="Product" Type="Model1.Store.ProductSet1" Multiplicity="*" />
+    <End Role="Afdeling" Type="Model1.Store.AfdelingSet" Multiplicity="0..1" />
+    <End Role="Product" Type="Model1.Store.ProductSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Afdeling">
         <PropertyRef Name="Naam" />
@@ -133,8 +133,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ProductProductMerk">
-    <End Role="Product" Type="Model1.Store.ProductSet1" Multiplicity="1" />
-    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet1" Multiplicity="*" />
+    <End Role="Product" Type="Model1.Store.ProductSet" Multiplicity="1" />
+    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="Id" />
@@ -145,8 +145,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MerkProductMerk">
-    <End Role="Merk" Type="Model1.Store.MerkSet1" Multiplicity="1" />
-    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet1" Multiplicity="*" />
+    <End Role="Merk" Type="Model1.Store.MerkSet" Multiplicity="1" />
+    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Merk">
         <PropertyRef Name="Naam" />
@@ -157,8 +157,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ProductMerkKorting">
-    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet1" Multiplicity="1" />
-    <End Role="Korting" Type="Model1.Store.KortingSet1" Multiplicity="*" />
+    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet" Multiplicity="1" />
+    <End Role="Korting" Type="Model1.Store.KortingSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProductMerk">
         <PropertyRef Name="Id" />
@@ -169,8 +169,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="BoodschappenLijstBoodschappenProduct">
-    <End Role="BoodschappenLijst" Type="Model1.Store.BoodschappenLijstSet1" Multiplicity="1" />
-    <End Role="BoodschappenProduct" Type="Model1.Store.BoodschappenProductSet1" Multiplicity="*" />
+    <End Role="BoodschappenLijst" Type="Model1.Store.BoodschappenLijstSet" Multiplicity="1" />
+    <End Role="BoodschappenProduct" Type="Model1.Store.BoodschappenProductSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BoodschappenLijst">
         <PropertyRef Name="Id" />
@@ -181,8 +181,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ReceptReceptProduct">
-    <End Role="Recept" Type="Model1.Store.ReceptSet1" Multiplicity="1" />
-    <End Role="ReceptProduct" Type="Model1.Store.ReceptProductSet1" Multiplicity="*" />
+    <End Role="Recept" Type="Model1.Store.ReceptSet" Multiplicity="1" />
+    <End Role="ReceptProduct" Type="Model1.Store.ReceptProductSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Recept">
         <PropertyRef Name="Id" />
@@ -193,8 +193,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ProductMerkReceptProduct">
-    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet1" Multiplicity="1" />
-    <End Role="ReceptProduct" Type="Model1.Store.ReceptProductSet1" Multiplicity="*" />
+    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet" Multiplicity="1" />
+    <End Role="ReceptProduct" Type="Model1.Store.ReceptProductSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProductMerk">
         <PropertyRef Name="Id" />
@@ -205,14 +205,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ProductMerkBoodschappenProduct">
-    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet1" Multiplicity="1" />
-    <End Role="BoodschappenProduct" Type="Model1.Store.BoodschappenProductSet1" Multiplicity="*" />
+    <End Role="ProductMerk" Type="Model1.Store.ProductMerkSet" Multiplicity="1" />
+    <End Role="BoodschappenProduct" Type="Model1.Store.BoodschappenProductSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProductMerk">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="BoodschappenProduct">
-        <PropertyRef Name="ProductMerkId1" />
+        <PropertyRef Name="ProductMerkId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -221,46 +221,46 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ProductSet1" EntityType="Model1.Product" />
-          <EntitySet Name="AfdelingSet1" EntityType="Model1.Afdeling" />
-          <EntitySet Name="MerkSet1" EntityType="Model1.Merk" />
-          <EntitySet Name="ProductMerkSet1" EntityType="Model1.ProductMerk" />
-          <EntitySet Name="KortingSet1" EntityType="Model1.Korting" />
-          <EntitySet Name="BoodschappenLijstSet1" EntityType="Model1.BoodschappenLijst" />
-          <EntitySet Name="BoodschappenProductSet1" EntityType="Model1.BoodschappenProduct" />
-          <EntitySet Name="ReceptSet1" EntityType="Model1.Recept" />
-          <EntitySet Name="ReceptProductSet1" EntityType="Model1.ReceptProduct" />
+          <EntitySet Name="ProductSet" EntityType="Model1.Product" />
+          <EntitySet Name="AfdelingSet" EntityType="Model1.Afdeling" />
+          <EntitySet Name="MerkSet" EntityType="Model1.Merk" />
+          <EntitySet Name="ProductMerkSet" EntityType="Model1.ProductMerk" />
+          <EntitySet Name="KortingSet" EntityType="Model1.Korting" />
+          <EntitySet Name="BoodschappenLijstSet" EntityType="Model1.BoodschappenLijst" />
+          <EntitySet Name="BoodschappenProductSet" EntityType="Model1.BoodschappenProduct" />
+          <EntitySet Name="ReceptSet" EntityType="Model1.Recept" />
+          <EntitySet Name="ReceptProductSet" EntityType="Model1.ReceptProduct" />
           <AssociationSet Name="AfdelingProduct" Association="Model1.AfdelingProduct">
-            <End Role="Afdeling" EntitySet="AfdelingSet1" />
-            <End Role="Product" EntitySet="ProductSet1" />
+            <End Role="Afdeling" EntitySet="AfdelingSet" />
+            <End Role="Product" EntitySet="ProductSet" />
           </AssociationSet>
           <AssociationSet Name="ProductProductMerk" Association="Model1.ProductProductMerk">
-            <End Role="Product" EntitySet="ProductSet1" />
-            <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
           </AssociationSet>
           <AssociationSet Name="MerkProductMerk" Association="Model1.MerkProductMerk">
-            <End Role="Merk" EntitySet="MerkSet1" />
-            <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
+            <End Role="Merk" EntitySet="MerkSet" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
           </AssociationSet>
           <AssociationSet Name="ProductMerkKorting" Association="Model1.ProductMerkKorting">
-            <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
-            <End Role="Korting" EntitySet="KortingSet1" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+            <End Role="Korting" EntitySet="KortingSet" />
           </AssociationSet>
           <AssociationSet Name="BoodschappenLijstBoodschappenProduct" Association="Model1.BoodschappenLijstBoodschappenProduct">
-            <End Role="BoodschappenLijst" EntitySet="BoodschappenLijstSet1" />
-            <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet1" />
+            <End Role="BoodschappenLijst" EntitySet="BoodschappenLijstSet" />
+            <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet" />
           </AssociationSet>
           <AssociationSet Name="ReceptReceptProduct" Association="Model1.ReceptReceptProduct">
-            <End Role="Recept" EntitySet="ReceptSet1" />
-            <End Role="ReceptProduct" EntitySet="ReceptProductSet1" />
+            <End Role="Recept" EntitySet="ReceptSet" />
+            <End Role="ReceptProduct" EntitySet="ReceptProductSet" />
           </AssociationSet>
           <AssociationSet Name="ProductMerkReceptProduct" Association="Model1.ProductMerkReceptProduct">
-            <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
-            <End Role="ReceptProduct" EntitySet="ReceptProductSet1" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+            <End Role="ReceptProduct" EntitySet="ReceptProductSet" />
           </AssociationSet>
           <AssociationSet Name="ProductMerkBoodschappenProduct" Association="Model1.ProductMerkBoodschappenProduct">
-            <End Role="ProductMerk" EntitySet="ProductMerkSet1" />
-            <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet1" />
+            <End Role="ProductMerk" EntitySet="ProductMerkSet" />
+            <End Role="BoodschappenProduct" EntitySet="BoodschappenProductSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product">
@@ -324,13 +324,13 @@
         <EntityType Name="BoodschappenProduct">
           <Key>
             <PropertyRef Name="BoodschappenLijstId" />
-            <PropertyRef Name="ProductMerkId1" />
+            <PropertyRef Name="ProductMerkId" />
           </Key>
           <Property Name="BoodschappenLijstId" Type="Int32" Nullable="false" />
           <Property Name="Aantal" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BoodschappenLijst" Relationship="Model1.BoodschappenLijstBoodschappenProduct" FromRole="BoodschappenProduct" ToRole="BoodschappenLijst" />
           <NavigationProperty Name="ProductMerk" Relationship="Model1.ProductMerkBoodschappenProduct" FromRole="BoodschappenProduct" ToRole="ProductMerk" />
-          <Property Name="ProductMerkId1" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ProductMerkId" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         </EntityType>
         <EntityType Name="Recept">
           <Key>
@@ -443,7 +443,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="BoodschappenProduct">
-              <PropertyRef Name="ProductMerkId1" />
+              <PropertyRef Name="ProductMerkId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -453,32 +453,32 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
-    <EntitySetMapping Name="ProductSet1">
+    <EntitySetMapping Name="ProductSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Product)">
-        <MappingFragment StoreEntitySet="ProductSet1">
+        <MappingFragment StoreEntitySet="ProductSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Naam" ColumnName="Naam" />
           <ScalarProperty Name="AfdelingNaam" ColumnName="AfdelingNaam" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AfdelingSet1">
+    <EntitySetMapping Name="AfdelingSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Afdeling)">
-        <MappingFragment StoreEntitySet="AfdelingSet1">
+        <MappingFragment StoreEntitySet="AfdelingSet">
           <ScalarProperty Name="Naam" ColumnName="Naam" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MerkSet1">
+    <EntitySetMapping Name="MerkSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Merk)">
-        <MappingFragment StoreEntitySet="MerkSet1">
+        <MappingFragment StoreEntitySet="MerkSet">
           <ScalarProperty Name="Naam" ColumnName="Naam" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductMerkSet1">
+    <EntitySetMapping Name="ProductMerkSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.ProductMerk)">
-        <MappingFragment StoreEntitySet="ProductMerkSet1">
+        <MappingFragment StoreEntitySet="ProductMerkSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="MerkNaam" ColumnName="MerkNaam" />
@@ -486,9 +486,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="KortingSet1">
+    <EntitySetMapping Name="KortingSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Korting)">
-        <MappingFragment StoreEntitySet="KortingSet1">
+        <MappingFragment StoreEntitySet="KortingSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="KortingCode" ColumnName="KortingCode" />
           <ScalarProperty Name="BeginDatum" ColumnName="BeginDatum" />
@@ -498,34 +498,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BoodschappenLijstSet1">
+    <EntitySetMapping Name="BoodschappenLijstSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.BoodschappenLijst)">
-        <MappingFragment StoreEntitySet="BoodschappenLijstSet1">
+        <MappingFragment StoreEntitySet="BoodschappenLijstSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TotaalPrijs" ColumnName="TotaalPrijs" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BoodschappenProductSet1">
+    <EntitySetMapping Name="BoodschappenProductSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.BoodschappenProduct)">
-        <MappingFragment StoreEntitySet="BoodschappenProductSet1">
+        <MappingFragment StoreEntitySet="BoodschappenProductSet">
           <ScalarProperty Name="BoodschappenLijstId" ColumnName="BoodschappenLijstId" />
-          <ScalarProperty Name="ProductMerkId1" ColumnName="ProductMerkId1" />
+          <ScalarProperty Name="ProductMerkId" ColumnName="ProductMerkId" />
           <ScalarProperty Name="Aantal" ColumnName="Aantal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ReceptSet1">
+    <EntitySetMapping Name="ReceptSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Recept)">
-        <MappingFragment StoreEntitySet="ReceptSet1">
+        <MappingFragment StoreEntitySet="ReceptSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Naam" ColumnName="Naam" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ReceptProductSet1">
+    <EntitySetMapping Name="ReceptProductSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.ReceptProduct)">
-        <MappingFragment StoreEntitySet="ReceptProductSet1">
+        <MappingFragment StoreEntitySet="ReceptProductSet">
           <ScalarProperty Name="ReceptId" ColumnName="ReceptId" />
           <ScalarProperty Name="ProductMerkId" ColumnName="ProductMerkId" />
           <ScalarProperty Name="Aantal" ColumnName="Aantal" />

@@ -29,5 +29,10 @@ namespace DomainModel.DummyRepos {
             }
             return null;
         }
+
+
+        public void SaveChanges() {
+            throw new NotImplementedException();
+        }
     }
 }

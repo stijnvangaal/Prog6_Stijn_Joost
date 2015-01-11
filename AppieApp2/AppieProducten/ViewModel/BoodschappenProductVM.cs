@@ -1,5 +1,6 @@
 ﻿using DomainModel;
 using DomainModel.DummyRepos;
+using DomainModel.EntityRepos;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,14 @@ namespace AppieProducten.ViewModel {
 
         public BoodschappenProductVM(BoodschappenProduct product) {
             this._BoodschappenProduct = product;
-            this.ProductMerk = new ProductMerkVM(new DummyProductMerkRepo().GetById(product.ProductMerkId));
-            this._BoodschappenLijst = new DummyBoodschappenLijstRepo().GetById(product.BoodschappenLijstId);
+            if (ViewModelBase.IsInDesignModeStatic) {
+                this.ProductMerk = new ProductMerkVM(new DummyProductMerkRepo().GetById(product.ProductMerkId));
+                this._BoodschappenLijst = new DummyBoodschappenLijstRepo().GetById(product.BoodschappenLijstId);
+            }
+            else {
+                this.ProductMerk = new ProductMerkVM(new EntityProductMerkRepo().GetById(product.ProductMerkId));
+                this._BoodschappenLijst = new EntityBoodschappenLijstRepo().GetById(product.BoodschappenLijstId);
+            }
         }
 
         //properties

@@ -11,5 +11,6 @@ namespace DomainModel.IRepos {
         void Create(Korting obj);
         void Delete(Korting obj);
         void Update(Korting obj, int id);
+        void SaveChanges();
     }
 }

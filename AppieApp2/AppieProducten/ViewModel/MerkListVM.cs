@@ -1,4 +1,5 @@
 ﻿using DomainModel.DummyRepos;
+using DomainModel.EntityRepos;
 using DomainModel.IRepos;
 using GalaSoft.MvvmLight;
 using System;
@@ -17,7 +18,12 @@ namespace AppieProducten.ViewModel {
         private IMerkRepo merkRepo;
 
         public MerkListVM() {
-            merkRepo = new DummyMerkRepo();
+            if (ViewModelBase.IsInDesignModeStatic) {
+                merkRepo = new DummyMerkRepo();
+            }
+            else {
+                merkRepo = new EntityMerkRepo();
+            }
 
             merken = new ObservableCollection<MerkVM>(merkRepo.GetAll().ToList().Select(m => new MerkVM(m)));
             ComboBoxMerken = new ObservableCollection<MerkVM>();
