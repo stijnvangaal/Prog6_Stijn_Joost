@@ -9,11 +9,12 @@ namespace AppieProducten.ViewModel{
 
         public AfdelingLijstVM AfdelingLijstVM { get; set; }
         public ProductListVM ProductListVM { get; set; }
+        public ProductMerkListVM ProductMerkListVM { get; set; }
 
         public BeheerSchermVM() {
             this.AfdelingLijstVM = new AfdelingLijstVM();
             this.ProductListVM = new ProductListVM();
-
+            this.ProductMerkListVM = new ProductMerkListVM();
 
         }
 

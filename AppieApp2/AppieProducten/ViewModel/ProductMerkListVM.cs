@@ -16,24 +16,67 @@ namespace AppieProducten.ViewModel {
 
         public ObservableCollection<ProductMerkVM> SortedProducten { get; set; }
 
+        public ObservableCollection<ProductMerkVM> ProductMerken { get; set; }
+
+        // Selected Properties
         public ProductMerkVM SelectedProduct { get; set; }
 
+        private int _selectedProductId;
+        public int SelectedProductId {
+            get {
+                return this._selectedProductId;
+            }
+            set {
+                this._selectedProductId = value;
+                this.ProductMerken = new ObservableCollection<ProductMerkVM>(new DummyProductRepo().GetById(_selectedProductId).ProductMerk.ToList().Select(m => new ProductMerkVM(m)));
+                this.RaisePropertyChanged("_afdelingNaam");
+            }
+        }
+
+        // Repo Propertie
         private IProductMerkRepo PMRepo;
 
+        // Command Properties
         public ICommand Sort { get; set; }
+        public ICommand SearchProductMerkCommand { get; set; }
 
         //sorteerStrings
         public string AfdelingNaam { get; set; }
         public string ProductNaam { get; set; }
         public string MerkNaam { get; set; }
 
+        // Prijs Propertie
+        //public double ProductMerkPrijs {
+        //    get {
+        //        return this.SelectedProduct.Prijs;
+        //    }
+        //    set {
+        //        this.SelectedProduct.Prijs = value;
+        //        this.RaisePropertyChanged("ProductMerkPrijs");
+        //    }
+        //}
+
+        // Search Properties
+        private string _searchProductMerk;
+        public string SearchProductMerk {
+            get {
+                return this._searchProductMerk;
+            }
+            set {
+                this._searchProductMerk = value;
+                this.RaisePropertyChanged("_searchProductMerk");
+            }
+        }
+
         public ProductMerkListVM() {
             PMRepo = new DummyProductMerkRepo();
 
             allProducten = new ObservableCollection<ProductMerkVM>(PMRepo.GetAll().ToList().Select(m => new ProductMerkVM(m)));
             SortedProducten = allProducten;
+            ProductMerken = allProducten;
 
             Sort = new RelayCommand(sortAll);
+            SearchProductMerkCommand = new RelayCommand(ActionSearchProductMerk);
         }
 
 
@@ -84,6 +127,10 @@ namespace AppieProducten.ViewModel {
 
         public String getProductName(int productId) {
             return new DummyProductRepo().GetById(productId).Naam;
+        }
+
+        private void ActionSearchProductMerk() {
+            throw new NotImplementedException();
         }
     }
 }

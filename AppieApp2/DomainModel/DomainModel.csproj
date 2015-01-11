@@ -66,6 +66,7 @@
     <Compile Include="DummyRepos\DummyMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductRepo.cs" />
+    <Compile Include="EntityRepos\EntityAfdelingRepo.cs" />
     <Compile Include="IRepos\IAfdelingRepo.cs" />
     <Compile Include="IRepos\IBoodschappenLijstRepo.cs" />
     <Compile Include="IRepos\IBoodschappenProductRepo.cs" />
@@ -137,9 +138,7 @@
     <Content Include="DeleteAll.edmx.sql" />
     <Content Include="AppieDB.edmx.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EntityRepos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
