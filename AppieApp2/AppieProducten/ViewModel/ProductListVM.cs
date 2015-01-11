@@ -118,6 +118,21 @@ namespace AppieProducten.ViewModel {
         private void ActionSearchAfdelingProduct() {
             throw new NotImplementedException("no afdeling product search");
         }
-        
+
+        internal void sort(AfdelingVM value) {
+            ComboBoxProducten = new ObservableCollection<ProductVM>();
+            ComboBoxProducten.Add(new ProductVM { Naam = "Leeg" });
+            if (value.Naam != "Leeg") {
+                foreach (ProductVM p in producten) {
+                    if (p.AfdelingNaam == value.Naam) {
+                        ComboBoxProducten.Add(p);
+                    }
+                }
+            }
+            else {
+                foreach (ProductVM p in producten) { ComboBoxProducten.Add(p); }
+            }
+            RaisePropertyChanged(() => ComboBoxProducten);
+        }
     }
 }

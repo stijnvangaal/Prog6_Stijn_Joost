@@ -38,8 +38,15 @@ namespace AppieProducten.ViewModel
             AddProduct = new RelayCommand(AddSelectedProduct);
         }
 
+        public AfdelingVM selectedAfdeling {
+            get { return productMerkListVM.selectedAfdeling; }
+            set { productMerkListVM.selectedAfdeling = value;
+            productListVM.sort(value);
+            }
+        }
+
         public void AddSelectedProduct() {
-            BoodschappenSchermVM.BoodschappenProductLijstVM.addProduct(productMerkListVM.SelectedProduct);
+            BoodschappenSchermVM.BoodschappenProductLijstVM.addProduct(productMerkListVM.SelectedProductMerk);
             RaisePropertyChanged(() => BoodschappenSchermVM.BoodschappenProductLijstVM.BoodschappenLijst);
         }
     }

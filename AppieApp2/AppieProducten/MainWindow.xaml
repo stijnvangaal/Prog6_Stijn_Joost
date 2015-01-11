@@ -3,8 +3,97 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Assortiment" Height="500" Width="700"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+            <MenuItem Header="Afsluiten" Click="MenuItem_Click"/>
+            <MenuItem Header="Assortiment" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Recepten" Click="MenuItem_Click_2"/>
+            <MenuItem Header="Beheer" Click="MenuItem_Click_3"/>
+        </Menu>
+        
+        <Border Grid.Column="0" Grid.Row="1">
+            <DataGrid RowHeaderWidth="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding afdelingLijstVM.ComboboxAfdelingen}" SelectedItem="{Binding selectedAfdeling}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Afdeling" Binding="{Binding Naam}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="1">
+            <DataGrid RowHeaderWidth="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding productListVM.ComboBoxProducten}" SelectedItem="{Binding productMerkListVM.selectedProduct}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Product" Binding="{Binding Naam}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="1">
+            <DataGrid RowHeaderWidth="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding merkListVM.ComboBoxMerken}" SelectedItem="{Binding productMerkListVM.selectedMerk}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Merk" Binding="{Binding Naam}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Grid Grid.Column="3" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <DataGrid RowHeaderWidth="0" Grid.Column="0" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding productMerkListVM.SortedProducten}" SelectedItem="{Binding productMerkListVM.SelectedProductMerk}">
+              
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="Blue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="Blue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Afdeling" Binding="{Binding Product.AfdelingNaam}" Width="auto"/>
+                    <DataGridTextColumn Header="Product" Binding="{Binding Product.Naam}" Width="auto"/>
+                    <DataGridTextColumn Header="Merk" Binding="{Binding MerkNaam}" Width="auto"/>
+                    <DataGridTextColumn Header="Prijs p.s." Binding="{Binding Prijs}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <Button Grid.Column="0" Grid.Row="1" Content="Toevoegen" Command="{Binding AddProduct}" Width="100" Margin="5"/> 
+            
+        </Grid>
+    </Grid>
+    
+    
+    <!--<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -15,7 +104,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <!-- menu -->
+        --><!-- menu --><!--
         <Menu Grid.Column="0" Grid.Row="0">
             <MenuItem Header="Afsluiten" Click="MenuItem_Click"/>
             <MenuItem Header="Assortiment" Click="MenuItem_Click_1"/>
@@ -23,7 +112,7 @@
             <MenuItem Header="Beheer" Click="MenuItem_Click_3"/>
         </Menu>
         
-        <!-- sorteer opties -->
+        --><!-- sorteer opties --><!--
         <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -35,7 +124,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Afdeling sort-->
+            --><!-- Afdeling sort--><!--
             <Border Grid.Column="0" Grid.Row="0" Width="100" Margin="100,5,0,0">
                 <StackPanel>
                     <Label Content="Afdeling"/>
@@ -47,7 +136,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Product sort-->
+            --><!-- Product sort--><!--
             <Border Grid.Column="1" Grid.Row="0" Width="100" Margin="50,5,0,0">
                 <StackPanel>
                     <Label Content="Product"/>
@@ -59,7 +148,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- merk sort-->
+            --><!-- merk sort--><!--
             <Border Grid.Column="2" Grid.Row="0" Width="100" Margin="50,5,0,0">
                 <StackPanel>
                     <Label Content="Merk"/>
@@ -74,8 +163,8 @@
             <Button Grid.Column="3" Grid.Row="0" Margin="50,5,0,0" Width="100" Content="Sorteer" Command="{Binding productMerkListVM.Sort}"/>
         </Grid>
         
-        <!-- Producten Lijst-->
-        <DataGrid Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding productMerkListVM.SelectedProduct}" ItemsSource="{Binding productMerkListVM.SortedProducten}" Margin="5">
+        --><!-- Producten Lijst--><!--
+        <DataGrid Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding productMerkListVM.SelectedProductMerk}" ItemsSource="{Binding productMerkListVM.SortedProducten}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Afdeling" Binding="{Binding Product.AfdelingNaam}"/>
                 <DataGridTextColumn Header="Product" Binding="{Binding Product.Naam}"/>
@@ -89,5 +178,5 @@
             
         </Border>
 
-    </Grid>
+    </Grid>-->
 </Window>

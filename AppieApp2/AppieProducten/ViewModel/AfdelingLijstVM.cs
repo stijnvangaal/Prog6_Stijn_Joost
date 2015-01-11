@@ -97,6 +97,7 @@ namespace AppieProducten.ViewModel {
             ComboboxAfdelingen.Add(new AfdelingVM { Naam = "Leeg" });
             foreach (AfdelingVM a in Afdelingen) { ComboboxAfdelingen.Add(a); }
 
+<<<<<<< HEAD
             SearchAfdeling = "";
 
             SearchAfdelingCommand = new RelayCommand(ActionSearchAfdeling);
@@ -104,6 +105,9 @@ namespace AppieProducten.ViewModel {
             DeleteAfdelingCommand = new RelayCommand(ActionDeleteAfdeling);
             CreateAfdelingCommand = new RelayCommand(ActionCreateAfdeling);
             ToepassenCommand = new RelayCommand(ActionToepassen);
+=======
+            Search = new RelayCommand(ActionSearch);
+>>>>>>> d9f2cea93f6cb8afec25aa52a1984933d18cbaf2
         }
 
         // Methods
