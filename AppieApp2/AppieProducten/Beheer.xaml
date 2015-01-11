@@ -39,7 +39,7 @@
 
                         <!-- Button Toepassen-->
                         <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
-                            <Button Content="Toepassen" Width="100"/>
+                            <Button Content="Toepassen" Command="{Binding AfdelingLijstVM.ToepassenCommand}" Width="100"/>
                         </Border>
                         
                         <!-- Afdeling List-->
@@ -162,7 +162,7 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding ProductListVM.AfdelingNaam}" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding ProductListVM.Afdeling}" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Afdeling" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>

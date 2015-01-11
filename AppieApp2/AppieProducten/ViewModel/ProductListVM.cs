@@ -34,14 +34,14 @@ namespace AppieProducten.ViewModel {
             }
         }
 
-        private string _afdelingNaam;
-        public string AfdelingNaam {
+        private AfdelingVM _afdeling;
+        public AfdelingVM Afdeling {
             get {
-                return this._afdelingNaam;
+                return this._afdeling;
             }
             set {
-                this._afdelingNaam = value;
-                this.AfdelingProducten = new ObservableCollection<ProductVM>(new DummyAfdelingRepo().GetByName(_afdelingNaam).Product.ToList().Select(m => new ProductVM(m)));
+                this._afdeling = value;
+                this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_afdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
                 this.RaisePropertyChanged("_afdelingNaam");
             }
         }

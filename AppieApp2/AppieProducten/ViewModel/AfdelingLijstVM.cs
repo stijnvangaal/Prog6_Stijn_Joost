@@ -85,11 +85,11 @@ namespace AppieProducten.ViewModel {
         // Constuctor
         public AfdelingLijstVM() {
             
-            //if (ViewModelBase.IsInDesignModeStatic) {
+            if (ViewModelBase.IsInDesignModeStatic) {
                 afRepo = new DummyAfdelingRepo();
-            //} else {
-            //    afRepo = new EntityAfdelingRepo();
-            //}
+            } else {
+                afRepo = new EntityAfdelingRepo();
+            }
 
             AllAfdelingen = new ObservableCollection<AfdelingVM>(afRepo.GetAll().ToList().Select(m => new AfdelingVM(m)));
             Afdelingen = AllAfdelingen;
