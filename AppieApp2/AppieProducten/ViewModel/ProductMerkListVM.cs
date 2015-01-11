@@ -234,7 +234,9 @@ namespace AppieProducten.ViewModel {
         }
 
         private void ActionAddProductMerk() {
-            ProductMerken.Add(new ProductMerkVM { ProductId = SelectedProductId.Id, MerkNaam = SelectedMerkList.Naam, Prijs = ProductMerkPrijs });
+            ProductMerkVM temp = new ProductMerkVM { ProductId = SelectedProductId.Id, MerkNaam = SelectedMerkList.Naam, Prijs = ProductMerkPrijs };
+            allProductMerken.Add(temp);
+            ProductMerken.Add(temp);
             SelectedMerkList = new MerkVM();
             RaisePropertyChanged(() => ProductMerken);
         }
@@ -256,6 +258,7 @@ namespace AppieProducten.ViewModel {
         }
 
         private void ActionRemoveProductMerk() {
+            allProductMerken.Remove(SelectedProductMerk);
             ProductMerken.Remove(SelectedProductMerk);
             SelectedProductMerk.MerkNaam = null;
             SelectedProductMerk.ProductId = 0;
@@ -273,7 +276,7 @@ namespace AppieProducten.ViewModel {
 
         public void ActionToepassen() {
             var dbList = PMRepo.GetAll().ToList().Select(m => new ProductMerkVM(m)).ToList();
-            var myList = ProductMerken.ToList();
+            var myList = allProductMerken.ToList();
             List<ProductMerkVM> newDbList = dbList.ToList();
             List<ProductMerkVM> newMyList = myList.ToList();
 
