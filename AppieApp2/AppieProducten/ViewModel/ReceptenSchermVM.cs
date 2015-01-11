@@ -23,9 +23,9 @@ namespace AppieProducten.ViewModel {
             AddRecept = new RelayCommand(DoAddRecept, CanAddRecept);
         }
 
-        private void DoAddRecept() {
+        public void DoAddRecept() {
             foreach (ReceptProductVM r in ReceptProductList.ReceptProducten) {
-                ProductMerkVM temp = new ProductMerkVM { Id = r.ProductId };
+                ProductMerkVM temp = new ProductMerkVM(r.ProductMerk);
                 for (int aantal = r.Aantal; aantal > 0; aantal--) {
                     Boodschappen.BoodschappenProductLijstVM.addProduct(temp);
                 }
