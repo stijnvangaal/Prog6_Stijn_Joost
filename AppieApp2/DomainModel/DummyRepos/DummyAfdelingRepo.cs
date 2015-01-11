@@ -41,7 +41,6 @@ namespace DomainModel.DummyRepos {
             afdelingen.Add(new Afdeling { Naam = Name });
         }
 
-
         public void SaveChanges() {
             throw new NotImplementedException();
         }
