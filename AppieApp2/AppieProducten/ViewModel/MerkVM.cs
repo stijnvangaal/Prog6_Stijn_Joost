@@ -8,7 +8,7 @@ using System.Text;
 namespace AppieProducten.ViewModel {
     public class MerkVM : ViewModelBase {
 
-        private Merk _Merk;
+        public Merk _Merk;
 
         public MerkVM() {
             _Merk = new Merk();

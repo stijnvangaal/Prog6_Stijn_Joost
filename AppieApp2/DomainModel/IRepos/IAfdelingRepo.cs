@@ -6,10 +6,10 @@ using System.Text;
 namespace DomainModel.IRepos {
     public interface IAfdelingRepo {
         IEnumerable<Afdeling> GetAll();
-        Afdeling GetByName(String Name);
+        Afdeling GetByName(string Name);
         void Create(Afdeling obj);
         void Delete(Afdeling obj);
-        void Update(Afdeling obj, String Name);
+        void Update(Afdeling obj, string Name);
         void SaveChanges();
     }
 }

@@ -82,18 +82,23 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="1">
-                                <TextBox Text="{Binding AfdelingLijstVM.SelectedAfdeling.Naam}"/>
+                                <TextBox Text="{Binding AfdelingLijstVM.SelectedAfdeling.Naam}" IsReadOnly="True"/>
                             </Border>
                             
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <Button Content="Update" Command="{Binding AfdelingLijstVM.UpdateAfdelingCommand}" />
+                                <TextBox Text="{Binding AfdelingLijstVM.EditAfdelingNaam}"/>
                             </Border>
                             
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
+                                <Button Content="Update" Command="{Binding AfdelingLijstVM.UpdateAfdelingCommand}" />
+                            </Border>
+                            
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="4">
                                 <Button Content="Delete" Command="{Binding AfdelingLijstVM.DeleteAfdelingCommand}"/>
                             </Border>
                         </Grid>
@@ -141,12 +146,12 @@
                         
                         <!-- Button Toepassen-->
                         <Border BorderThickness="2" Grid.Column="0" Grid.Row="0">
-                            <Button Content="Toepassen" Width="100"/>
+                            <Button Content="Toepassen" Command="{Binding ProductListVM.ToepassenAfProCommand}" Width="100"/>
                         </Border>
 
                         <!-- Button leeg maken-->
                         <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
-                            <Button Content="Leeg Maken" Width="100"/>
+                            <Button Content="Leeg Maken" Command="{Binding ProductListVM.LeegMakenAfProCommand}" Width="100"/>
                         </Border>
 
                         <!--Afedeling Lijst-->
@@ -162,7 +167,7 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding ProductListVM.Afdeling}" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding ProductListVM.SelectedAfdeling}" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Afdeling" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>
@@ -222,11 +227,11 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border BorderThickness="5,5,5,5" Grid.Column="1" Grid.Row="1">
-                                <Button Content="&lt;" Width="20"/>
+                                <Button Content="&lt;" Command="{Binding ProductListVM.AddAfdelingProductCommand}" Width="20"/>
                             </Border>
 
                             <Border BorderThickness="5,5,5,5" Grid.Column="1" Grid.Row="2">
-                                <Button Content="&gt;" Width="20"/>
+                                <Button Content="&gt;" Command="{Binding ProductListVM.RemoveAfdelingProductCommand}" Width="20"/>
                             </Border>
                         </Grid>
 
@@ -278,7 +283,7 @@
 
                         <!-- Button Toepassen-->
                         <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
-                            <Button Content="Toepassen" Width="100"/>
+                            <Button Content="Toepassen" Command="{Binding ProductListVM.ToepassenCommand}" Width="100"/>
                         </Border>
 
                         <!-- Afdeling List-->
@@ -325,15 +330,15 @@
                             </Grid.RowDefinitions>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="1">
-                                <TextBox Text="{Binding ProductListVM.SelectedProduct}"/>
+                                <TextBox Text="{Binding ProductListVM.SelectedProduct.Naam}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <Button Content="Update"/>
+                                <Button Content="Update" Command="{Binding ProductListVM.UpdateProductCommand}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Delete"/>
+                                <Button Content="Delete" Command="{Binding ProductListVM.DeleteProductCommand}"/>
                             </Border>
                         </Grid>
 
@@ -355,7 +360,7 @@
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <Button Content="Create"/>
+                                <Button Content="Create" Command="{Binding ProductListVM.CreateProductCommand}"/>
                             </Border>
 
                         </Grid>

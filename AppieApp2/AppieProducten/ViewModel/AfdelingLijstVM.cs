@@ -43,6 +43,18 @@ namespace AppieProducten.ViewModel {
             }
         }
 
+        // Edit Properties
+        private string _editAfdelingNaam;
+        public string EditAfdelingNaam {
+            get {
+                return this._editAfdelingNaam;
+            }
+            set {
+                this._editAfdelingNaam = value;
+                RaisePropertyChanged(() => EditAfdelingNaam);
+            }
+        }
+
         // Create Properties
         private string _newAfdelingString;
         public string NewAfdelingString {
@@ -100,9 +112,9 @@ namespace AppieProducten.ViewModel {
             SearchAfdeling = "";
 
             SearchAfdelingCommand = new RelayCommand(ActionSearchAfdeling);
-            UpdateAfdelingCommand = new RelayCommand(ActionUpdateAfdeling);
-            DeleteAfdelingCommand = new RelayCommand(ActionDeleteAfdeling);
-            CreateAfdelingCommand = new RelayCommand(ActionCreateAfdeling);
+            UpdateAfdelingCommand = new RelayCommand(ActionUpdateAfdeling, CanUpdateAfdeling);
+            DeleteAfdelingCommand = new RelayCommand(ActionDeleteAfdeling, CanDeleteAfdeling);
+            CreateAfdelingCommand = new RelayCommand(ActionCreateAfdeling, CanCreateAfdeling);
             ToepassenCommand = new RelayCommand(ActionToepassen);
         }
 
@@ -124,7 +136,31 @@ namespace AppieProducten.ViewModel {
         }
 
         private void ActionUpdateAfdeling() {
+            afRepo.Update(SelectedAfdeling._Afdeling, EditAfdelingNaam);
+            SelectedAfdeling = new AfdelingVM();
+            EditAfdelingNaam = "";
+            AllAfdelingen = new ObservableCollection<AfdelingVM>(afRepo.GetAll().ToList().Select(m => new AfdelingVM(m)));
+            Afdelingen = AllAfdelingen;
+            ActionSearchAfdeling();
             RaisePropertyChanged(() => SelectedAfdeling);
+        }
+
+        private bool CanUpdateAfdeling() {
+            if (SelectedAfdeling == null) {
+                return false;
+            } else if (SelectedAfdeling.Naam == null) {
+                return false;
+            } else if (SelectedAfdeling.Naam.Equals("")) {
+                return false;
+            } else if (EditAfdelingNaam == null) {
+                return false;
+            } else if (EditAfdelingNaam.Equals("")) {
+                return false;
+            } else if (SelectedAfdeling.Naam.Equals(EditAfdelingNaam)) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
         private void ActionDeleteAfdeling() {
@@ -135,12 +171,34 @@ namespace AppieProducten.ViewModel {
             RaisePropertyChanged(() => SelectedAfdeling);
         }
 
+        private bool CanDeleteAfdeling() {
+            if (SelectedAfdeling == null) {
+                return false;
+            } else if (SelectedAfdeling.Naam == null) {
+                return false;
+            } else if (SelectedAfdeling.Naam.Equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         private void ActionCreateAfdeling() {
             this.AllAfdelingen.Add(new AfdelingVM { Naam = this.NewAfdelingString });
             this.NewAfdelingString = "";
             Afdelingen = AllAfdelingen;
             this.ActionSearchAfdeling();
             RaisePropertyChanged(() => AllAfdelingen);
+        }
+
+        private bool CanCreateAfdeling() {
+            if (NewAfdelingString == null) {
+                return false;
+            } else if (NewAfdelingString.Equals("")) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
         public void ActionToepassen() {

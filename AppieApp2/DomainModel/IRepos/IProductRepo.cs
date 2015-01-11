@@ -8,6 +8,11 @@ namespace DomainModel.IRepos {
         IEnumerable<Product> GetAll();
 
         Product GetById(int id);
+        void Create(Product obj);
+        void AddAfdeling(Product obj, string afName);
+        void Delete(Product obj);
+        void RemoveAfdeling(Product obj, string afName);
+        void Update(Product obj, string Name);
         void SaveChanges();
     }
 }

@@ -30,19 +30,22 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._selectedProduct = value;
-                this.RaisePropertyChanged("_selectedProduct");
+                this.RaisePropertyChanged(()=> SelectedProduct);
             }
         }
 
-        private AfdelingVM _afdeling;
-        public AfdelingVM Afdeling {
+        private AfdelingVM _selectedAfdeling;
+        public AfdelingVM SelectedAfdeling {
             get {
-                return this._afdeling;
+                return this._selectedAfdeling;
             }
             set {
-                this._afdeling = value;
-                this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_afdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
-                this.RaisePropertyChanged("_afdelingNaam");
+                this._selectedAfdeling = value;
+                this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_selectedAfdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
+                this.SelectedAfdelingProduct = null;
+                this.SelectedProduct = null;
+                this.RaisePropertyChanged(()=> SelectedAfdeling);
+                this.RaisePropertyChanged(() => AfdelingProducten);
             }
         }
 
@@ -53,7 +56,7 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._selectedAfdelingProduct = value;
-                this.RaisePropertyChanged("_selectedAfdelingProduct");
+                this.RaisePropertyChanged(() => SelectedAfdelingProduct);
             }
         }
 
@@ -65,7 +68,7 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._newProductString = value;
-                this.RaisePropertyChanged("_newProductString");
+                this.RaisePropertyChanged(() => NewProductString);
             }
         }
 
@@ -77,7 +80,7 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._searchProduct = value;
-                this.RaisePropertyChanged("_searchProduct");
+                this.RaisePropertyChanged(() => SearchProduct);
             }
         }
 
@@ -88,7 +91,7 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._searchAfdelingProduct = value;
-                this.RaisePropertyChanged("_searchAfdelingProduct");
+                this.RaisePropertyChanged(() => SearchAfdelingProduct);
             }
         }
 
@@ -97,7 +100,24 @@ namespace AppieProducten.ViewModel {
 
         // Commands
         public ICommand SearchProductCommand { get; set; }
+
+        public ICommand UpdateProductCommand { get; set; }
+
+        public ICommand DeleteProductCommand { get; set; }
+
+        public ICommand CreateProductCommand { get; set; }
+
         public ICommand SearchAfdelingProductCommand { get; set; }
+
+        public ICommand AddAfdelingProductCommand { get; set; }
+
+        public ICommand RemoveAfdelingProductCommand { get; set; }
+
+        public ICommand ToepassenCommand { get; set; }
+
+        public ICommand ToepassenAfProCommand { get; set; }
+
+        public ICommand LeegMakenAfProCommand { get; set; }
 
         // Constructors
         public ProductListVM() {
@@ -113,8 +133,19 @@ namespace AppieProducten.ViewModel {
             ComboBoxProducten = new ObservableCollection<ProductVM>();
             ComboBoxProducten.Add(new ProductVM { Naam = "Leeg" });
             foreach (ProductVM p in Producten) { ComboBoxProducten.Add(p); }
+
+            SearchProduct = "";
+
             SearchProductCommand = new RelayCommand(ActionSearchProduct);
+            UpdateProductCommand = new RelayCommand(ActionUpdateProduct, CanUpdateProduct);
+            DeleteProductCommand = new RelayCommand(ActionDeleteProduct, CanDeleteProduct);
+            CreateProductCommand = new RelayCommand(ActionCreateProduct, CanCreateProduct);
             SearchAfdelingProductCommand = new RelayCommand(ActionSearchAfdelingProduct);
+            AddAfdelingProductCommand = new RelayCommand(ActionAddAfdelingProduct, CanAddAfdelingProduct);
+            RemoveAfdelingProductCommand = new RelayCommand(ActionRemoveAfdelingProduct, CanRemoveAfdelingProduct);
+            ToepassenCommand = new RelayCommand(ActionToepassen);
+            ToepassenAfProCommand = new RelayCommand(ActionToepassenAfPro);
+            LeegMakenAfProCommand = new RelayCommand(ActionLeegMakenAfPro);
         }
 
         private void ActionSearchProduct() {
@@ -132,19 +163,169 @@ namespace AppieProducten.ViewModel {
             RaisePropertyChanged(() => Producten);
         }
 
+        private void ActionUpdateProduct() {
+            proRepo.Update(SelectedProduct._Product, SelectedProduct.Naam);
+            SelectedProduct = new ProductVM();
+            AllProducten = new ObservableCollection<ProductVM>(proRepo.GetAll().ToList().Select(m => new ProductVM(m)));
+            Producten = AllProducten;
+            ActionSearchProduct();
+            RaisePropertyChanged(() => SelectedProduct);
+        }
+
+        private bool CanUpdateProduct() {
+            if (SelectedProduct == null) {
+                return false;
+            } else if (SelectedProduct.Naam == null) {
+                return false;
+            } else if (SelectedProduct.Naam.Equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        private void ActionDeleteProduct() {
+            this.AllProducten.Remove(this.SelectedProduct);
+            SelectedProduct = new ProductVM();
+            Producten = AllProducten;
+            this.ActionSearchProduct();
+            RaisePropertyChanged(() => SelectedProduct);
+        }
+
+        private bool CanDeleteProduct() {
+            if (SelectedProduct == null) {
+                return false;
+            } else if (SelectedProduct.Naam == null) {
+                return false;
+            } else if (SelectedProduct.Naam.Equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        private void ActionCreateProduct() {
+            this.AllProducten.Add(new ProductVM { Naam = this.NewProductString });
+            this.NewProductString = "";
+            Producten = AllProducten;
+            this.ActionSearchProduct();
+            RaisePropertyChanged(() => AllProducten);
+        }
+
+        private bool CanCreateProduct() {
+            if (NewProductString == null) {
+                return false;
+            } else if (NewProductString.Equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         private void ActionSearchAfdelingProduct() {
             var searchedlist = new ObservableCollection<ProductVM>();
+            var toSearchList = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_selectedAfdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
             if (SearchAfdelingProduct == "") {
-                searchedlist = AllProducten;
+                searchedlist = toSearchList;
             } else {
-                foreach (var item in AllProducten) {
+                foreach (var item in toSearchList) {
                     if (item.Naam.ToLower().Contains(SearchAfdelingProduct.ToLower())) {
                         searchedlist.Add(item);
                     }
                 }
             }
-            Producten = searchedlist;
-            RaisePropertyChanged(() => Producten);
+            AfdelingProducten = searchedlist;
+            RaisePropertyChanged(() => AfdelingProducten);
+        }
+
+        private void ActionAddAfdelingProduct() {
+            AfdelingProducten.Add(SelectedProduct);
+            SelectedProduct.AfdelingNaam = SelectedAfdeling.Naam;
+            SelectedProduct = new ProductVM();
+            RaisePropertyChanged(() => AfdelingProducten);
+        }
+
+        private bool CanAddAfdelingProduct() {
+            if (SelectedProduct == null) {
+                return false;
+            }
+            if (SelectedAfdeling == null) {
+                return false;
+            }
+            foreach (var item in AfdelingProducten) {
+                if (item.Id == SelectedProduct.Id) {
+                    return false;
+                } 
+            }
+            foreach (var item in Producten) {
+                if (item.AfdelingNaam != null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void ActionRemoveAfdelingProduct() {
+            AfdelingProducten.Remove(SelectedAfdelingProduct);
+            SelectedAfdelingProduct.AfdelingNaam = null;
+            SelectedAfdelingProduct = new ProductVM();
+            RaisePropertyChanged(() => AfdelingProducten);
+        }
+
+        private bool CanRemoveAfdelingProduct() {
+            if (SelectedAfdelingProduct == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        public void ActionToepassen() {
+            var dbList = proRepo.GetAll().ToList().Select(m => new ProductVM(m)).ToList();
+            var myList = AllProducten.ToList();
+            List<ProductVM> newDbList = dbList.ToList();
+            List<ProductVM> newMyList = myList.ToList();
+
+            foreach (ProductVM dbProduct in dbList) {
+                foreach (ProductVM myProduct in myList) {
+                    if (dbProduct.Naam == myProduct.Naam) {
+                        newDbList.Remove(dbProduct);
+                        newMyList.Remove(myProduct);
+                        break;
+                    }
+                }
+            }
+
+            foreach (ProductVM dbProduct in newDbList) { proRepo.Delete(dbProduct._Product); }
+            foreach (ProductVM myProduct in newMyList) { proRepo.Create(myProduct._Product); }
+            proRepo.SaveChanges();
+        }
+
+        public void ActionToepassenAfPro() {
+            var dbList = proRepo.GetAll().ToList().Where(m => m.AfdelingNaam == SelectedAfdeling.Naam).Select(m => new ProductVM(m)).ToList();
+            var myList = AfdelingProducten.ToList();
+            List<ProductVM> newDbList = dbList.ToList();
+            List<ProductVM> newMyList = myList.ToList();
+
+            foreach (ProductVM dbProduct in dbList) {
+                foreach (ProductVM myProduct in myList) {
+                    if (dbProduct.Naam == myProduct.Naam) {
+                        newDbList.Remove(dbProduct);
+                        newMyList.Remove(myProduct);
+                        break;
+                    }
+                }
+            }
+
+            foreach (ProductVM dbProduct in newDbList) { proRepo.RemoveAfdeling(dbProduct._Product, SelectedAfdeling.Naam); }
+            foreach (ProductVM myProduct in newMyList) { proRepo.AddAfdeling(myProduct._Product, SelectedAfdeling.Naam); }
+            proRepo.SaveChanges();
+        }
+
+        public void ActionLeegMakenAfPro() {
+            var dbList = proRepo.GetAll().ToList().Where(m => m.AfdelingNaam == SelectedAfdeling.Naam).Select(m => new ProductVM(m)).ToList();
+            foreach (ProductVM dbProduct in dbList) { proRepo.RemoveAfdeling(dbProduct._Product, SelectedAfdeling.Naam); }
+            proRepo.SaveChanges();
         }
 
         internal void sort(AfdelingVM value) {

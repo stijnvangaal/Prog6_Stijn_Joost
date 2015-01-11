@@ -32,5 +32,27 @@ namespace DomainModel.DummyRepos {
         public void SaveChanges() {
             throw new NotImplementedException();
         }
+
+
+        public void Create(Product obj) {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Product obj) {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Product obj, string Name) {
+            throw new NotImplementedException();
+        }
+
+
+        public void AddAfdeling(Product obj, string afName) {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAfdeling(Product obj, string afName) {
+            throw new NotImplementedException();
+        }
     }
 }

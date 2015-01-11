@@ -22,12 +22,35 @@ namespace DomainModel.EntityRepos {
         }
 
         public void Delete(Afdeling obj) {
+            var producten = db.AfdelingSet.Find(obj.Naam).Product.ToList();
+
+            foreach (var item in producten) {
+                item.Afdeling = null;
+                item.AfdelingNaam = null;
+            }
+
+            db.AfdelingSet.Find(obj.Naam).Product.Clear();
             db.AfdelingSet.Remove(obj);
             db.SaveChanges();
         }
 
         public void Update(Afdeling obj, string Name) {
-            db.Entry(obj).Property(u => u.Naam).CurrentValue = Name;
+
+            if (db.AfdelingSet.Find(obj.Naam).Product != null) {
+                var producten = db.AfdelingSet.Find(obj.Naam).Product.ToList();
+                db.AfdelingSet.Add(new Afdeling { Naam = Name });
+                foreach (var item in producten) {
+                    item.Afdeling = db.AfdelingSet.Find(Name);
+                    item.AfdelingNaam = Name;
+                }
+                db.AfdelingSet.Find(Name).Product = producten;
+            }
+
+
+            db.AfdelingSet.Find(obj.Naam).Product.Clear();
+            db.AfdelingSet.Remove(obj);
+
+            db.SaveChanges();
         }
 
         public void SaveChanges() {

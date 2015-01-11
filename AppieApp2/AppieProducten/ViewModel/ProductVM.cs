@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AppieProducten.ViewModel {
     public class ProductVM : ViewModelBase{
-        private Product _Product;
+        public Product _Product;
 
         public ProductVM() {
             _Product = new Product();

@@ -13,6 +13,7 @@ using System.Windows.Input;
 namespace AppieProducten.ViewModel {
     public class ProductMerkListVM : ViewModelBase {
 
+        // List Properties
         public ObservableCollection<ProductMerkVM> allProducten { get; set; }
 
         public ObservableCollection<ProductMerkVM> SortedProducten { get; set; }
@@ -30,7 +31,7 @@ namespace AppieProducten.ViewModel {
             set {
                 this._selectedProductId = value;
                 this.ProductMerken = new ObservableCollection<ProductMerkVM>(new EntityProductRepo().GetById(_selectedProductId.Id).ProductMerk.ToList().Select(m => new ProductMerkVM(m)));
-                this.RaisePropertyChanged("_afdelingNaam");
+                this.RaisePropertyChanged(() => SelectedProductId);
             }
         }
 
