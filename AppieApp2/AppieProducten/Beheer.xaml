@@ -167,7 +167,7 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding ProductListVM.SelectedAfdeling}" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingLijstVM.Afdelingen}" SelectedItem="{Binding ProductListVM.SelectedProductAfdeling}" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Afdeling" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>
@@ -528,7 +528,7 @@
 
                         <!-- Button Toepassen-->
                         <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
-                            <Button Content="Toepassen" Width="100"/>
+                            <Button Content="Toepassen" Command="{Binding MerkListVM.ToepassenCommand}" Width="100"/>
                         </Border>
 
                         <!-- Afdeling List-->
@@ -544,20 +544,20 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding MerkListVM.Merken}" SelectedItem="{Binding MerkListVM.SelectedMerk}" Margin="5">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Merk" Binding="{Binding}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Merk" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <TextBox />
+                                <TextBox Text="{Binding MerkListVM.SearchMerk}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Search" />
+                                <Button Content="Search" Command="{Binding MerkListVM.SearchMerkCommand}"/>
                             </Border>
                         </Grid>
 
@@ -571,19 +571,24 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="1">
-                                <TextBox />
+                                <TextBox Text="{Binding MerkListVM.SelectedMerk.Naam}" IsReadOnly="True"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <Button Content="Update"/>
+                                <TextBox Text="{Binding MerkListVM.EditMerkNaam}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Delete"/>
+                                <Button Content="Update" Command="{Binding MerkListVM.UpdateMerkCommand}"/>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="4">
+                                <Button Content="Delete" Command="{Binding MerkListVM.DeleteMerkCommand}"/>
                             </Border>
                         </Grid>
 
@@ -601,11 +606,11 @@
                             </Grid.RowDefinitions>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="1">
-                                <TextBox />
+                                <TextBox Text="{Binding MerkListVM.NewMerkString}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <Button Content="Create"/>
+                                <Button Content="Create" Command="{Binding MerkListVM.CreateMerkCommand}"/>
                             </Border>
 
                         </Grid>

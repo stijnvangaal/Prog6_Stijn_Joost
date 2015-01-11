@@ -34,17 +34,17 @@ namespace AppieProducten.ViewModel {
             }
         }
 
-        private AfdelingVM _selectedAfdeling;
-        public AfdelingVM SelectedAfdeling {
+        private AfdelingVM _selectedProductAfdeling;
+        public AfdelingVM SelectedProductAfdeling {
             get {
-                return this._selectedAfdeling;
+                return this._selectedProductAfdeling;
             }
             set {
-                this._selectedAfdeling = value;
-                this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_selectedAfdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
+                this._selectedProductAfdeling = value;
+                this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_selectedProductAfdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
                 this.SelectedAfdelingProduct = null;
                 this.SelectedProduct = null;
-                this.RaisePropertyChanged(()=> SelectedAfdeling);
+                this.RaisePropertyChanged(()=> SelectedProductAfdeling);
                 this.RaisePropertyChanged(() => AfdelingProducten);
             }
         }
@@ -224,7 +224,7 @@ namespace AppieProducten.ViewModel {
 
         private void ActionSearchAfdelingProduct() {
             var searchedlist = new ObservableCollection<ProductVM>();
-            var toSearchList = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_selectedAfdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
+            var toSearchList = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_selectedProductAfdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
             if (SearchAfdelingProduct == "") {
                 searchedlist = toSearchList;
             } else {
@@ -240,16 +240,19 @@ namespace AppieProducten.ViewModel {
 
         private void ActionAddAfdelingProduct() {
             AfdelingProducten.Add(SelectedProduct);
-            SelectedProduct.AfdelingNaam = SelectedAfdeling.Naam;
+            SelectedProduct.AfdelingNaam = SelectedProductAfdeling.Naam;
             SelectedProduct = new ProductVM();
             RaisePropertyChanged(() => AfdelingProducten);
         }
 
         private bool CanAddAfdelingProduct() {
+
             if (SelectedProduct == null) {
                 return false;
+            } else if (SelectedProduct.AfdelingNaam == null) {
+                return true;
             }
-            if (SelectedAfdeling == null) {
+            if (SelectedProductAfdeling == null) {
                 return false;
             }
             foreach (var item in AfdelingProducten) {
@@ -302,7 +305,7 @@ namespace AppieProducten.ViewModel {
         }
 
         public void ActionToepassenAfPro() {
-            var dbList = proRepo.GetAll().ToList().Where(m => m.AfdelingNaam == SelectedAfdeling.Naam).Select(m => new ProductVM(m)).ToList();
+            var dbList = proRepo.GetAll().ToList().Where(m => m.AfdelingNaam == SelectedProductAfdeling.Naam).Select(m => new ProductVM(m)).ToList();
             var myList = AfdelingProducten.ToList();
             List<ProductVM> newDbList = dbList.ToList();
             List<ProductVM> newMyList = myList.ToList();
@@ -317,14 +320,14 @@ namespace AppieProducten.ViewModel {
                 }
             }
 
-            foreach (ProductVM dbProduct in newDbList) { proRepo.RemoveAfdeling(dbProduct._Product, SelectedAfdeling.Naam); }
-            foreach (ProductVM myProduct in newMyList) { proRepo.AddAfdeling(myProduct._Product, SelectedAfdeling.Naam); }
+            foreach (ProductVM dbProduct in newDbList) { proRepo.RemoveAfdeling(dbProduct._Product, SelectedProductAfdeling.Naam); }
+            foreach (ProductVM myProduct in newMyList) { proRepo.AddAfdeling(myProduct._Product, SelectedProductAfdeling.Naam); }
             proRepo.SaveChanges();
         }
 
         public void ActionLeegMakenAfPro() {
-            var dbList = proRepo.GetAll().ToList().Where(m => m.AfdelingNaam == SelectedAfdeling.Naam).Select(m => new ProductVM(m)).ToList();
-            foreach (ProductVM dbProduct in dbList) { proRepo.RemoveAfdeling(dbProduct._Product, SelectedAfdeling.Naam); }
+            var dbList = proRepo.GetAll().ToList().Where(m => m.AfdelingNaam == SelectedProductAfdeling.Naam).Select(m => new ProductVM(m)).ToList();
+            foreach (ProductVM dbProduct in dbList) { proRepo.RemoveAfdeling(dbProduct._Product, SelectedProductAfdeling.Naam); }
             proRepo.SaveChanges();
         }
 

@@ -32,16 +32,16 @@ namespace AppieProducten.ViewModel {
             }
         }
 
-        private AfdelingVM _selectedAfdelingProduct;
-        public AfdelingVM SelectedAfdelingProduct {
-            get {
-                return this._selectedAfdelingProduct;
-            }
-            set {
-                this._selectedAfdelingProduct = value;
-                this.RaisePropertyChanged(()=> SelectedAfdelingProduct);
-            }
-        }
+        //private AfdelingVM _selectedAfdelingProduct;
+        //public AfdelingVM SelectedAfdelingProduct {
+        //    get {
+        //        return this._selectedAfdelingProduct;
+        //    }
+        //    set {
+        //        this._selectedAfdelingProduct = value;
+        //        this.RaisePropertyChanged(()=> SelectedAfdelingProduct);
+        //    }
+        //}
 
         // Edit Properties
         private string _editAfdelingNaam;

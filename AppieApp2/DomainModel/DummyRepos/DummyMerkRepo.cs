@@ -41,5 +41,10 @@ namespace DomainModel.DummyRepos {
         public void SaveChanges() {
             throw new NotImplementedException();
         }
+
+
+        public void Update(Merk merk, string Name) {
+            throw new NotImplementedException();
+        }
     }
 }

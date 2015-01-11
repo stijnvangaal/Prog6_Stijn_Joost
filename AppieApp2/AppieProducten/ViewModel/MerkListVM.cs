@@ -11,7 +11,7 @@ using GalaSoft.MvvmLight.Command;
 using DomainModel.EntityRepos;
 
 namespace AppieProducten.ViewModel {
-    public class MerkLijstVM : ViewModelBase {
+    public class MerkListVM : ViewModelBase {
 
         // ListProperties
         public ObservableCollection<MerkVM> Merken { get; set; }
@@ -95,7 +95,7 @@ namespace AppieProducten.ViewModel {
         public ICommand ToepassenCommand { get; set; }
 
         // Constuctor
-        public MerkLijstVM() {
+        public MerkListVM() {
 
             if (ViewModelBase.IsInDesignModeStatic) {
                 merkRepo = new DummyMerkRepo();
@@ -218,7 +218,7 @@ namespace AppieProducten.ViewModel {
             }
 
             foreach (MerkVM dbMerk in newDbList) { merkRepo.Delete(dbMerk._Merk); }
-            foreach (MerkVM myMerk in newMyList) { merkRepo.Create(myMerk._Merk); }
+            foreach (MerkVM myMerk in newMyList) { merkRepo.Add(myMerk._Merk); }
             merkRepo.SaveChanges();
         }
 
