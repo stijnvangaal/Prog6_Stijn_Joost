@@ -40,7 +40,7 @@
         </Border>
 
         <Border Grid.Column="2" Grid.Row="1">
-            <DataGrid RowHeaderWidth="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding merkListVM.ComboBoxMerken}" SelectedItem="{Binding productMerkListVM.selectedMerk}">
+            <DataGrid RowHeaderWidth="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding merkListVM.ComboboxMerken}" SelectedItem="{Binding productMerkListVM.selectedMerk}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Merk" Binding="{Binding Naam}" Width="*"/>
                 </DataGrid.Columns>
