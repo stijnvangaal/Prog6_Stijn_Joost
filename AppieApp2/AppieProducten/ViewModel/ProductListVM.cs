@@ -112,11 +112,33 @@ namespace AppieProducten.ViewModel {
         }
 
         private void ActionSearchProduct() {
-            throw new NotImplementedException("no product search");
+            var searchedlist = new ObservableCollection<ProductVM>();
+            if (SearchProduct == "") {
+                searchedlist = AllProducten;
+            } else {
+                foreach (var item in AllProducten) {
+                    if (item.Naam.ToLower().Contains(SearchProduct.ToLower())) {
+                        searchedlist.Add(item);
+                    }
+                }
+            }
+            Producten = searchedlist;
+            RaisePropertyChanged(() => Producten);
         }
 
         private void ActionSearchAfdelingProduct() {
-            throw new NotImplementedException("no afdeling product search");
+            var searchedlist = new ObservableCollection<ProductVM>();
+            if (SearchAfdelingProduct == "") {
+                searchedlist = AllProducten;
+            } else {
+                foreach (var item in AllProducten) {
+                    if (item.Naam.ToLower().Contains(SearchAfdelingProduct.ToLower())) {
+                        searchedlist.Add(item);
+                    }
+                }
+            }
+            Producten = searchedlist;
+            RaisePropertyChanged(() => Producten);
         }
 
         internal void sort(AfdelingVM value) {

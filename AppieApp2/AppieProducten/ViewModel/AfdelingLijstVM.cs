@@ -137,6 +137,7 @@ namespace AppieProducten.ViewModel {
 
         private void ActionCreateAfdeling() {
             this.AllAfdelingen.Add(new AfdelingVM { Naam = this.NewAfdelingString });
+            this.NewAfdelingString = "";
             Afdelingen = AllAfdelingen;
             this.ActionSearchAfdeling();
             RaisePropertyChanged(() => AllAfdelingen);
