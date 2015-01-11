@@ -438,7 +438,7 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ProductMerkListVM.ProductMerken}" SelectedItem="{Binding ProductMerkListVM.SearchProductMerk}" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ProductMerkListVM.ProductMerken}" SelectedItem="{Binding ProductMerkListVM.SelectedProductMerk}" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Merk van Product" Binding="{Binding MerkNaam}" Width="*" CanUserResize="False"/>
                                             <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="50" CanUserResize="False"/>
@@ -619,7 +619,7 @@
                     </Grid>
                 </TabItem>
                 <!-- Recepten Vul tab-->
-                <TabItem Header="ReceptVullen" VerticalAlignment="Bottom">
+                <!--<TabItem Header="ReceptVullen" VerticalAlignment="Bottom">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -634,17 +634,17 @@
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Button Toepassen-->
+                        --><!-- Button Toepassen--><!--
                         <Border BorderThickness="2" Grid.Column="0" Grid.Row="0">
                             <Button Content="Toepassen" Command="{Binding }" Width="100"/>
                         </Border>
 
-                        <!-- Button leeg maken-->
+                        --><!-- Button leeg maken--><!--
                         <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
                             <Button Content="Leeg Maken" Command="{Binding }" Width="100"/>
                         </Border>
 
-                        <!--Recepten Lijst-->
+                        --><!--Recepten Lijst--><!--
                         <Grid Grid.Column="0" Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -675,7 +675,7 @@
                         </Grid>
 
 
-                        <!-- ReceptProduct Lijst-->
+                        --><!-- ReceptProduct Lijst--><!--
                         <Grid Grid.Column="1" Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -707,7 +707,7 @@
                             </Border>
                         </Grid>
 
-                        <!-- Add&Remove buttons-->
+                        --><!-- Add&Remove buttons--><!--
                         <Grid Grid.Column="2" Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
@@ -727,7 +727,7 @@
                             </Border>
                         </Grid>
 
-                        <!-- ProductMerk Lijst-->
+                        --><!-- ProductMerk Lijst--><!--
                         <Grid Grid.Column="3" Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -759,7 +759,7 @@
                             </Border>
                         </Grid>
                     </Grid>
-                </TabItem>
+                </TabItem>-->
             </TabControl>
         </Border>
         <Border BorderThickness="5,5,5,5" Grid.Column="0" Grid.Row="2">

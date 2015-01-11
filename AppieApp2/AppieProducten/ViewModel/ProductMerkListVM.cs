@@ -237,7 +237,6 @@ namespace AppieProducten.ViewModel {
             ProductMerkVM temp = new ProductMerkVM { ProductId = SelectedProductId.Id, MerkNaam = SelectedMerkList.Naam, Prijs = ProductMerkPrijs };
             allProductMerken.Add(temp);
             ProductMerken.Add(temp);
-            SelectedMerkList = new MerkVM();
             RaisePropertyChanged(() => ProductMerken);
         }
 
@@ -260,8 +259,6 @@ namespace AppieProducten.ViewModel {
         private void ActionRemoveProductMerk() {
             allProductMerken.Remove(SelectedProductMerk);
             ProductMerken.Remove(SelectedProductMerk);
-            SelectedProductMerk.MerkNaam = null;
-            SelectedProductMerk.ProductId = 0;
             SelectedProductMerk = new ProductMerkVM();
             RaisePropertyChanged(() => ProductMerken);
         }
