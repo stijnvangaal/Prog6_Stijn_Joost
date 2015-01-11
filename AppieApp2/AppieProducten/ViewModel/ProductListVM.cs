@@ -41,7 +41,12 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._afdelingNaam = value;
-                this.AfdelingProducten = new ObservableCollection<ProductVM>(new DummyAfdelingRepo().GetByName(_afdelingNaam).Product.ToList().Select(m => new ProductVM(m)));
+                if (ViewModelBase.IsInDesignModeStatic) {
+                    this.AfdelingProducten = new ObservableCollection<ProductVM>(new DummyAfdelingRepo().GetByName(_afdelingNaam).Product.ToList().Select(m => new ProductVM(m)));
+                }
+                else {
+                    this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_afdelingNaam).Product.ToList().Select(m => new ProductVM(m)));
+                }
                 this.RaisePropertyChanged("_afdelingNaam");
             }
         }

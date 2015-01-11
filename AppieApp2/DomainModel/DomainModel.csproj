@@ -66,6 +66,8 @@
     <Compile Include="DummyRepos\DummyMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductRepo.cs" />
+    <Compile Include="DummyRepos\DummyReceptProductRepo.cs" />
+    <Compile Include="DummyRepos\DummyReceptRepo.cs" />
     <Compile Include="EntityRepos\EntityAfdelingRepo.cs" />
     <Compile Include="EntityRepos\EntityBoodschappenLijstRepo.cs" />
     <Compile Include="EntityRepos\EntityBoodschappenProductRepo.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="EntityRepos\EntityMerkRepo.cs" />
     <Compile Include="EntityRepos\EntityProductMerkRepo.cs" />
     <Compile Include="EntityRepos\EntityProductRepo.cs" />
+    <Compile Include="EntityRepos\EntityReceptProductRepo.cs" />
+    <Compile Include="EntityRepos\EntityReceptRepo.cs" />
     <Compile Include="IRepos\IAfdelingRepo.cs" />
     <Compile Include="IRepos\IBoodschappenLijstRepo.cs" />
     <Compile Include="IRepos\IBoodschappenProductRepo.cs" />
@@ -80,6 +84,8 @@
     <Compile Include="IRepos\IMerkRepo.cs" />
     <Compile Include="IRepos\IProductMerkRepo.cs" />
     <Compile Include="IRepos\IProductRepo.cs" />
+    <Compile Include="IRepos\IReceptProductRepo.cs" />
+    <Compile Include="IRepos\IReceptRepo.cs" />
     <Compile Include="Korting.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
