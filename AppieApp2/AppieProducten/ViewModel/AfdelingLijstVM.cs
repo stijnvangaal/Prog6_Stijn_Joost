@@ -57,6 +57,7 @@ namespace AppieProducten.ViewModel {
             ComboboxAfdelingen = new ObservableCollection<AfdelingVM>();
             ComboboxAfdelingen.Add(new AfdelingVM { Naam = "Leeg" });
             foreach (AfdelingVM a in Afdelingen) { ComboboxAfdelingen.Add(a); }
+
             Search = new RelayCommand(ActionSearch);
         }
 

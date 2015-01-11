@@ -46,6 +46,7 @@ namespace AppieProducten.ViewModel {
 
         //methods
         public Boolean addProduct(ProductMerkVM product) {
+            if (product == null) { return false; }
             foreach (BoodschappenProductVM b in BoodschappenLijst) {
                 if (b.ProductMerkId == product.Id) {
                     b.Aantal++;

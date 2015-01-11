@@ -37,7 +37,7 @@ namespace AppieProducten.ViewModel {
             get { return _ProductMerk.Id; }
             set {
                 _ProductMerk.Id = value;
-                RaisePropertyChanged(null);
+                RaisePropertyChanged(() => Id);
             }
         }
 
@@ -45,7 +45,7 @@ namespace AppieProducten.ViewModel {
             get { return _ProductMerk.ProductId; }
             set {
                 _ProductMerk.ProductId = value;
-                RaisePropertyChanged(null);
+                RaisePropertyChanged(() => ProductId);
             }
         }
 
@@ -53,7 +53,7 @@ namespace AppieProducten.ViewModel {
             get { return _ProductMerk.MerkNaam; }
             set {
                 _ProductMerk.MerkNaam = value;
-                RaisePropertyChanged(null);
+                RaisePropertyChanged(() => MerkNaam);
             }
         }
 
@@ -61,7 +61,7 @@ namespace AppieProducten.ViewModel {
             get { return _ProductMerk.Prijs; }
             set {
                 _ProductMerk.Prijs = value;
-                RaisePropertyChanged(null);
+                RaisePropertyChanged(() => Prijs);
             }
         }
     }

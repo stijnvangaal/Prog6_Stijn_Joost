@@ -24,5 +24,21 @@ namespace AppieProducten.ViewModel {
             ComboBoxProducten.Add(new ProductVM { Naam = "Leeg" });
             foreach (ProductVM p in producten) { ComboBoxProducten.Add(p); }
         }
+
+        internal void sort(AfdelingVM value) {
+            ComboBoxProducten = new ObservableCollection<ProductVM>();
+            ComboBoxProducten.Add(new ProductVM { Naam = "Leeg" });
+            if (value.Naam != "Leeg") {
+                foreach (ProductVM p in producten) {
+                    if (p.AfdelingNaam == value.Naam) {
+                        ComboBoxProducten.Add(p);
+                    }
+                }
+            }
+            else {
+                foreach (ProductVM p in producten) { ComboBoxProducten.Add(p); }
+            }
+            RaisePropertyChanged(() => ComboBoxProducten);
+        }
     }
 }
