@@ -123,14 +123,14 @@ namespace AppieProducten.ViewModel {
             ComboBoxProducten = new ObservableCollection<ProductVM>();
             ComboBoxProducten.Add(new ProductVM { Naam = "Leeg" });
             if (value.Naam != "Leeg") {
-                foreach (ProductVM p in producten) {
+                foreach (ProductVM p in Producten) {
                     if (p.AfdelingNaam == value.Naam) {
                         ComboBoxProducten.Add(p);
                     }
                 }
             }
             else {
-                foreach (ProductVM p in producten) { ComboBoxProducten.Add(p); }
+                foreach (ProductVM p in Producten) { ComboBoxProducten.Add(p); }
             }
             RaisePropertyChanged(() => ComboBoxProducten);
         }

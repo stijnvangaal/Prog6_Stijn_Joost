@@ -33,11 +33,13 @@ namespace AppieProducten.ViewModel {
             }
         }
 
-        // Repo Propertie
+        private ProductMerkVM _SelectedProductMerk;
         public ProductMerkVM SelectedProductMerk {
             get { return _SelectedProductMerk; }
             set { _SelectedProductMerk = value; }
         }
+
+        // Repo Propertie
 
         private IProductMerkRepo PMRepo;
 
