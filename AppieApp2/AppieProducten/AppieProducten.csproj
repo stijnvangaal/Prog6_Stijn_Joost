@@ -98,6 +98,11 @@
     <Compile Include="ViewModel\ProductMerkListVM.cs" />
     <Compile Include="ViewModel\ProductMerkVM.cs" />
     <Compile Include="ViewModel\ProductVM.cs" />
+    <Compile Include="ViewModel\ReceptenSchermVM.cs" />
+    <Compile Include="ViewModel\ReceptListVM.cs" />
+    <Compile Include="ViewModel\ReceptProductListVM.cs" />
+    <Compile Include="ViewModel\ReceptProductVM.cs" />
+    <Compile Include="ViewModel\ReceptVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Beheer.xaml">
       <SubType>Designer</SubType>

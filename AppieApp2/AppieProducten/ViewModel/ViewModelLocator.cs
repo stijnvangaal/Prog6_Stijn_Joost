@@ -31,20 +31,15 @@ namespace AppieProducten.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (ViewModelBase.IsInDesignModeStatic) {
-                //get dummy
-            }
-            else {
-                //get entity
-            }
-
             //lijsten
-            //SimpleIoc.Default.Register<BoodschappenProductLijstVM>();
+            SimpleIoc.Default.Register<ReceptListVM>();
+            SimpleIoc.Default.Register<ReceptProductListVM>();
 
             //windows
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<BoodschappenSchermVM>();
             SimpleIoc.Default.Register<BeheerSchermVM>();
+            SimpleIoc.Default.Register<ReceptenSchermVM>();
         }
 
         public MainViewModel Main
@@ -61,6 +56,10 @@ namespace AppieProducten.ViewModel
 
         public BeheerSchermVM Beheer {
             get { return ServiceLocator.Current.GetInstance<BeheerSchermVM>(); }
+        }
+
+        public ReceptenSchermVM recepten {
+            get { return ServiceLocator.Current.GetInstance<ReceptenSchermVM>(); }
         }
 
         public static void Cleanup()
