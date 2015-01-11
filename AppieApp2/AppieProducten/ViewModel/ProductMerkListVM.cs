@@ -14,15 +14,15 @@ namespace AppieProducten.ViewModel {
     public class ProductMerkListVM : ViewModelBase {
 
         // List Properties
-        public ObservableCollection<ProductMerkVM> allProducten { get; set; }
+        public ObservableCollection<ProductMerkVM> allProductMerken { get; set; }
 
         public ObservableCollection<ProductMerkVM> SortedProducten { get; set; }
 
         public ObservableCollection<ProductMerkVM> ProductMerken { get; set; }
 
-        // Selected Properties
-        public ProductMerkVM SelectedProduct { get; set; }
 
+
+        // Selected Properties
         private ProductVM _selectedProductId;
         public ProductVM SelectedProductId {
             get {
@@ -31,14 +31,30 @@ namespace AppieProducten.ViewModel {
             set {
                 this._selectedProductId = value;
                 this.ProductMerken = new ObservableCollection<ProductMerkVM>(new EntityProductRepo().GetById(_selectedProductId.Id).ProductMerk.ToList().Select(m => new ProductMerkVM(m)));
+                this.selectedMerk = null;
                 this.RaisePropertyChanged(() => SelectedProductId);
+                this.RaisePropertyChanged(() => ProductMerken);
             }
         }
+
+        private MerkVM _selectedMerkList;
+        public MerkVM SelectedMerkList {
+            get {
+                return this._selectedMerkList;
+            }
+            set {
+                this._selectedMerkList = value;
+                RaisePropertyChanged(() => SelectedMerkList);
+            }
+        }
+
 
         private ProductMerkVM _SelectedProductMerk;
         public ProductMerkVM SelectedProductMerk {
             get { return _SelectedProductMerk; }
-            set { _SelectedProductMerk = value; }
+            set { _SelectedProductMerk = value;
+            RaisePropertyChanged(() => SelectedProductMerk);
+            }
         }
 
         // Repo Propertie
@@ -48,7 +64,13 @@ namespace AppieProducten.ViewModel {
         // Command Properties
         public ICommand Sort { get; set; }
         public ICommand SearchProductMerkCommand { get; set; }
+        public ICommand AddProductMerkCommand { get; set; }
+        public ICommand RemoveProductenCommand { get; set; }
+        public ICommand ToepassenCommand { get; set; }
+        public ICommand LeegMakenCommand { get; set; }
 
+
+        // HoofdScherm Selection Properties
         private AfdelingVM _selectedAfdeling;
         private ProductVM _selectedProduct;
         private MerkVM _selectedMerk;
@@ -82,15 +104,16 @@ namespace AppieProducten.ViewModel {
         public string MerkNaam { get; set; }
 
         // Prijs Propertie
-        //public double ProductMerkPrijs {
-        //    get {
-        //        return this.SelectedProduct.Prijs;
-        //    }
-        //    set {
-        //        this.SelectedProduct.Prijs = value;
-        //        this.RaisePropertyChanged("ProductMerkPrijs");
-        //    }
-        //}
+        private double _productMerkPrijs;
+        public double ProductMerkPrijs {
+            get {
+                return this._productMerkPrijs;
+            }
+            set {
+                this._productMerkPrijs = value;
+                this.RaisePropertyChanged(()=> ProductMerkPrijs);
+            }
+        }
 
         // Search Properties
         private string _searchProductMerk;
@@ -100,7 +123,7 @@ namespace AppieProducten.ViewModel {
             }
             set {
                 this._searchProductMerk = value;
-                this.RaisePropertyChanged("_searchProductMerk");
+                this.RaisePropertyChanged(()=> SearchProductMerk);
             }
         }
 
@@ -117,12 +140,16 @@ namespace AppieProducten.ViewModel {
             _selectedMerk = new MerkVM { Naam = "Leeg" };
 
 
-            allProducten = new ObservableCollection<ProductMerkVM>(PMRepo.GetAll().ToList().Select(m => new ProductMerkVM(m)));
-            SortedProducten = allProducten;
-            ProductMerken = allProducten;
+            allProductMerken = new ObservableCollection<ProductMerkVM>(PMRepo.GetAll().ToList().Select(m => new ProductMerkVM(m)));
+            SortedProducten = allProductMerken;
+            ProductMerken = allProductMerken;
 
             Sort = new RelayCommand(sortAll);
             SearchProductMerkCommand = new RelayCommand(ActionSearchProductMerk);
+            AddProductMerkCommand = new RelayCommand(ActionAddProductMerk, CanAddProductMerk);
+            RemoveProductenCommand = new RelayCommand(ActionRemoveProductMerk, CanRemoveProductMerk);
+            ToepassenCommand = new RelayCommand(ActionToepassen);
+            LeegMakenCommand = new RelayCommand(ActionLeegMaken, CanLeegMaken);
         }
 
 
@@ -131,15 +158,15 @@ namespace AppieProducten.ViewModel {
             ObservableCollection<ProductMerkVM> afdelingList = new ObservableCollection<ProductMerkVM>();
             if (selectedAfdeling != null) {
                 if (selectedAfdeling.Naam != "Leeg") {
-                foreach (ProductMerkVM p in allProducten) {
+                foreach (ProductMerkVM p in allProductMerken) {
                         if (this.getAfdeling(p.ProductId) == _selectedAfdeling.Naam) {
                         afdelingList.Add(p);
                     }
                 }
             }
-            else { afdelingList = allProducten; }
+            else { afdelingList = allProductMerken; }
             }
-            else { afdelingList = allProducten; }
+            else { afdelingList = allProductMerken; }
 
             //sorteer op product
             ObservableCollection<ProductMerkVM> productList = new ObservableCollection<ProductMerkVM>();
@@ -192,7 +219,95 @@ namespace AppieProducten.ViewModel {
         }
 
         private void ActionSearchProductMerk() {
-            throw new NotImplementedException();
+            var searchedlist = new ObservableCollection<ProductMerkVM>();
+            if (SearchProductMerk == "") {
+                searchedlist = allProductMerken;
+            } else {
+                foreach (var item in allProductMerken) {
+                    if (item.MerkNaam.ToLower().Contains(SearchProductMerk.ToLower())) {
+                        searchedlist.Add(item);
+                    }
+                }
+            }
+            ProductMerken = searchedlist;
+            RaisePropertyChanged(() => ProductMerken);
         }
+
+        private void ActionAddProductMerk() {
+            ProductMerken.Add(new ProductMerkVM { ProductId = SelectedProductId.Id, MerkNaam = SelectedMerkList.Naam, Prijs = ProductMerkPrijs });
+            SelectedMerkList = new MerkVM();
+            RaisePropertyChanged(() => ProductMerken);
+        }
+
+        private bool CanAddProductMerk() {
+            if (SelectedProductId == null) {
+                return false;
+            } else if (SelectedMerkList == null) {
+                return false;
+            } else if (SelectedProductId._Product.ProductMerk.Count() != 0) {
+                if (SelectedMerkList._Merk.ProductMerk.Count() != 0) {
+                    return false;
+                }
+                return true;
+            }
+            else {
+                return true;
+            }
+        }
+
+        private void ActionRemoveProductMerk() {
+            ProductMerken.Remove(SelectedProductMerk);
+            SelectedProductMerk.MerkNaam = null;
+            SelectedProductMerk.ProductId = 0;
+            SelectedProductMerk = new ProductMerkVM();
+            RaisePropertyChanged(() => ProductMerken);
+        }
+
+        private bool CanRemoveProductMerk() {
+            if (SelectedProductMerk == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        public void ActionToepassen() {
+            var dbList = PMRepo.GetAll().ToList().Select(m => new ProductMerkVM(m)).ToList();
+            var myList = ProductMerken.ToList();
+            List<ProductMerkVM> newDbList = dbList.ToList();
+            List<ProductMerkVM> newMyList = myList.ToList();
+
+            foreach (ProductMerkVM dbProductMerk in dbList) {
+                foreach (ProductMerkVM myProductMerk in myList) {
+                    if (dbProductMerk.Id == myProductMerk.Id) {
+                        newDbList.Remove(dbProductMerk);
+                        newMyList.Remove(myProductMerk);
+                        break;
+                    }
+                }
+            }
+
+            foreach (ProductMerkVM dbProductMerk in newDbList) { PMRepo.Delete(dbProductMerk._ProductMerk); }
+            foreach (ProductMerkVM myProductMerk in newMyList) { PMRepo.Create(myProductMerk._ProductMerk); }
+            PMRepo.SaveChanges();
+        }
+
+        public void ActionLeegMaken() {
+            var dbList = PMRepo.GetAll().ToList().Where(m => m.MerkNaam == SelectedMerkList.Naam && m.ProductId == SelectedProductId.Id).Select(m => new ProductMerkVM(m)).ToList();
+            foreach (ProductMerkVM dbProductMerk in dbList) { PMRepo.Delete(dbProductMerk._ProductMerk); }
+            PMRepo.SaveChanges();
+        }
+
+        private bool CanLeegMaken() {
+            if (SelectedProductId == null) {
+                return false;
+            }
+            if (SelectedMerkList == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        
     }
 }

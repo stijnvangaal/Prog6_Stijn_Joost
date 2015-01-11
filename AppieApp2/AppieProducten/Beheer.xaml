@@ -385,12 +385,12 @@
 
                         <!-- Button Toepassen-->
                         <Border BorderThickness="2" Grid.Column="0" Grid.Row="0">
-                            <Button Content="Toepassen" Width="100"/>
+                            <Button Content="Toepassen" Command="{Binding ProductMerkListVM.ToepassenCommand}" Width="100"/>
                         </Border>
 
                         <!-- Button leeg maken-->
                         <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
-                            <Button Content="Leeg Maken" Width="100"/>
+                            <Button Content="Leeg Maken" Command="{Binding ProductMerkListVM.LeegMakenCommand}" Width="100"/>
                         </Border>
 
                         <!--Product Lijst-->
@@ -438,20 +438,21 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ProductMerkListVM.ProductMerken}" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ProductMerkListVM.ProductMerken}" SelectedItem="{Binding ProductMerkListVM.SearchProductMerk}" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Merk van Product" Binding="{Binding MerkNaam}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="50" CanUserResize="False"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <TextBox />
+                                <TextBox Text="{Binding ProductMerkListVM.SearchProductMerk}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Search" />
+                                <Button Content="Search" Command="{Binding ProductMerkListVM.SearchProductMerkCommand}"/>
                             </Border>
                         </Grid>
 
@@ -468,7 +469,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border BorderThickness="5,5,5,5" Grid.Column="0" Grid.Row="1">
-                                <Button Content="&lt;" Width="20"/>
+                                <Button Content="&lt;" Command="{Binding ProductMerkListVM.AddProductMerkCommand}" Width="20"/>
                             </Border>
                             
                             <Border BorderThickness="5,5,5,5" Grid.Column="0" Grid.Row="2">
@@ -476,7 +477,7 @@
                             </Border>
 
                             <Border BorderThickness="5,5,5,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="&gt;" Width="20"/>
+                                <Button Content="&gt;" Command="{Binding ProductMerkListVM.RemoveProductenCommand}" Width="20"/>
                             </Border>
                         </Grid>
 
@@ -493,20 +494,20 @@
                             </Grid.RowDefinitions>
                             <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
                                 <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
-                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" Margin="5">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding MerkListVM.Merken}" SelectedItem="{Binding ProductMerkListVM.SelectedMerkList}" Margin="5">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Merk" Binding="{Binding}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Merk" Binding="{Binding Naam}" Width="*" CanUserResize="False"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
-                                <TextBox />
+                                <TextBox Text="{Binding MerkListVM.SearchMerk}"/>
                             </Border>
 
                             <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
-                                <Button Content="Search" />
+                                <Button Content="Search" Command="{Binding MerkListVM.SearchMerkCommand}"/>
                             </Border>
                         </Grid>
                     </Grid>

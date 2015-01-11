@@ -12,7 +12,7 @@ using System.Text;
 namespace AppieProducten.ViewModel {
     public class ProductMerkVM : ViewModelBase {
 
-        private ProductMerk _ProductMerk;
+        public ProductMerk _ProductMerk;
 
         //constructors
         public ProductMerkVM() {

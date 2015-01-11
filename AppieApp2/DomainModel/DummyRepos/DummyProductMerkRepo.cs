@@ -34,5 +34,14 @@ namespace DomainModel.DummyRepos {
         public void SaveChanges() {
             throw new NotImplementedException();
         }
+
+
+        public void Create(ProductMerk obj) {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(ProductMerk obj) {
+            throw new NotImplementedException();
+        }
     }
 }

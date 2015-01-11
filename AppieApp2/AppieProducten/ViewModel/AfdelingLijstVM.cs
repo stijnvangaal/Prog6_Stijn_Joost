@@ -85,13 +85,9 @@ namespace AppieProducten.ViewModel {
 
         // Commands
         public ICommand SearchAfdelingCommand { get; set; }
-
         public ICommand UpdateAfdelingCommand { get; set; }
-
         public ICommand DeleteAfdelingCommand { get; set; }
-
         public ICommand CreateAfdelingCommand { get; set; }
-
         public ICommand ToepassenCommand { get; set; }
 
         // Constuctor

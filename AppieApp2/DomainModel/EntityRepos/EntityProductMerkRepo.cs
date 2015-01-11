@@ -20,5 +20,18 @@ namespace DomainModel.EntityRepos {
         public void SaveChanges() {
             db.SaveChanges();
         }
+
+
+        public void Create(ProductMerk obj) {
+            db.ProductMerkSet.Add(obj);
+            db.SaveChanges();
+        }
+
+        public void Delete(ProductMerk obj) {
+            db.MerkSet.Find(obj.MerkNaam).ProductMerk.Remove(obj);
+            db.ProductSet.Find(obj.ProductId).ProductMerk.Remove(obj);
+            db.ProductMerkSet.Remove(obj);
+            db.SaveChanges();
+        }
     }
 }

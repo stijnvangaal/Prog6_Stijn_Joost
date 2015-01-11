@@ -9,6 +9,8 @@ namespace DomainModel.IRepos {
         IEnumerable<ProductMerk> GetAll();
 
         ProductMerk GetById(int id);
+        void Create(ProductMerk obj);
+        void Delete(ProductMerk obj);
         void SaveChanges();
     }
 }

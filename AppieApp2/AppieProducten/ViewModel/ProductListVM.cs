@@ -100,23 +100,14 @@ namespace AppieProducten.ViewModel {
 
         // Commands
         public ICommand SearchProductCommand { get; set; }
-
         public ICommand UpdateProductCommand { get; set; }
-
         public ICommand DeleteProductCommand { get; set; }
-
         public ICommand CreateProductCommand { get; set; }
-
         public ICommand SearchAfdelingProductCommand { get; set; }
-
         public ICommand AddAfdelingProductCommand { get; set; }
-
         public ICommand RemoveAfdelingProductCommand { get; set; }
-
         public ICommand ToepassenCommand { get; set; }
-
         public ICommand ToepassenAfProCommand { get; set; }
-
         public ICommand LeegMakenAfProCommand { get; set; }
 
         // Constructors
@@ -246,24 +237,13 @@ namespace AppieProducten.ViewModel {
         }
 
         private bool CanAddAfdelingProduct() {
-
+            if (SelectedProductAfdeling == null) {
+                return false;
+            }
             if (SelectedProduct == null) {
                 return false;
             } else if (SelectedProduct.AfdelingNaam == null) {
                 return true;
-            }
-            if (SelectedProductAfdeling == null) {
-                return false;
-            }
-            foreach (var item in AfdelingProducten) {
-                if (item.Id == SelectedProduct.Id) {
-                    return false;
-                } 
-            }
-            foreach (var item in Producten) {
-                if (item.AfdelingNaam != null) {
-                    return false;
-                }
             }
             return true;
         }
