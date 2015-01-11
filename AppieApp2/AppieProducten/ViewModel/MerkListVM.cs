@@ -107,7 +107,7 @@ namespace AppieProducten.ViewModel {
             Merken = AllMerken;
             ComboboxMerken = new ObservableCollection<MerkVM>();
             ComboboxMerken.Add(new MerkVM { Naam = "Leeg" });
-            foreach (MerkVM a in Merken) { ComboboxMerken.Add(a); }
+            foreach (MerkVM a in AllMerken) { ComboboxMerken.Add(a); }
 
             SearchMerk = "";
 

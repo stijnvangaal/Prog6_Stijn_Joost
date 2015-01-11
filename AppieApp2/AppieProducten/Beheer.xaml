@@ -618,6 +618,148 @@
 
                     </Grid>
                 </TabItem>
+                <!-- Recepten Vul tab-->
+                <TabItem Header="ReceptVullen" VerticalAlignment="Bottom">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Button Toepassen-->
+                        <Border BorderThickness="2" Grid.Column="0" Grid.Row="0">
+                            <Button Content="Toepassen" Command="{Binding }" Width="100"/>
+                        </Border>
+
+                        <!-- Button leeg maken-->
+                        <Border BorderThickness="2" Grid.Column="1" Grid.Row="0">
+                            <Button Content="Leeg Maken" Command="{Binding }" Width="100"/>
+                        </Border>
+
+                        <!--Recepten Lijst-->
+                        <Grid Grid.Column="0" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" SelectedItem="{Binding }" Margin="5">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Recept" Binding="{Binding }" Width="*" CanUserResize="False"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Border>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
+                                <TextBox Text=""/>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
+                                <Button Content="Search" Command="{Binding }"/>
+                            </Border>
+                        </Grid>
+
+
+                        <!-- ReceptProduct Lijst-->
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding }" SelectedItem="{Binding }" Margin="5">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Recept" Binding="{Binding }" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Product" Binding="{Binding }" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Merk" Binding="{Binding }" Width="*" CanUserResize="False"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Border>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
+                                <TextBox Text=""/>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
+                                <Button Content="Search" Command="{Binding }"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Add&Remove buttons-->
+                        <Grid Grid.Column="2" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderThickness="5,5,5,5" Grid.Column="1" Grid.Row="1">
+                                <Button Content="&lt;" Command="{Binding }" Width="20"/>
+                            </Border>
+
+                            <Border BorderThickness="5,5,5,5" Grid.Column="1" Grid.Row="2">
+                                <Button Content="&gt;" Command="{Binding }" Width="20"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- ProductMerk Lijst-->
+                        <Grid Grid.Column="3" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                <Border BorderThickness="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ProductMerkListVM.ProductMerken}" SelectedItem="{Binding }" Margin="5">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Product" Binding="{Binding Product.Naam}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Merk" Binding="{Binding MerkNaam}" Width="*" CanUserResize="False"/>
+                                            <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="*" CanUserResize="False"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Border>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="2">
+                                <TextBox Text="{Binding ProductMerkListVM.SearchProductMerk}"/>
+                            </Border>
+
+                            <Border BorderThickness="20,5,20,5" Grid.Column="0" Grid.Row="3">
+                                <Button Content="Search" Command="{Binding ProductMerkListVM.SearchProductMerkCommand}"/>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </TabItem>
             </TabControl>
         </Border>
         <Border BorderThickness="5,5,5,5" Grid.Column="0" Grid.Row="2">
