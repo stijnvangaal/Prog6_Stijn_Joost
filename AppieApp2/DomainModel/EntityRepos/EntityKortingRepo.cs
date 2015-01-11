@@ -9,7 +9,7 @@ namespace DomainModel.EntityRepos {
         AppieDBContainer db = new AppieDBContainer();
 
         public IEnumerable<Korting> GetAll() {
-            return db.KortingSet;
+            return db.KortingSet.ToList();
         }
 
         public Korting GetById(int id) {

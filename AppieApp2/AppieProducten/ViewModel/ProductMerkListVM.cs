@@ -22,14 +22,14 @@ namespace AppieProducten.ViewModel {
         // Selected Properties
         public ProductMerkVM SelectedProduct { get; set; }
 
-        private int _selectedProductId;
-        public int SelectedProductId {
+        private ProductVM _selectedProductId;
+        public ProductVM SelectedProductId {
             get {
                 return this._selectedProductId;
             }
             set {
                 this._selectedProductId = value;
-                this.ProductMerken = new ObservableCollection<ProductMerkVM>(new DummyProductRepo().GetById(_selectedProductId).ProductMerk.ToList().Select(m => new ProductMerkVM(m)));
+                this.ProductMerken = new ObservableCollection<ProductMerkVM>(new EntityProductRepo().GetById(_selectedProductId.Id).ProductMerk.ToList().Select(m => new ProductMerkVM(m)));
                 this.RaisePropertyChanged("_afdelingNaam");
             }
         }

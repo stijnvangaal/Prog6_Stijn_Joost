@@ -34,19 +34,14 @@ namespace AppieProducten.ViewModel {
             }
         }
 
-        private string _afdelingNaam;
-        public string AfdelingNaam {
+        private AfdelingVM _afdeling;
+        public AfdelingVM Afdeling {
             get {
-                return this._afdelingNaam;
+                return this._afdeling;
             }
             set {
-                this._afdelingNaam = value;
-                if (ViewModelBase.IsInDesignModeStatic) {
-                    this.AfdelingProducten = new ObservableCollection<ProductVM>(new DummyAfdelingRepo().GetByName(_afdelingNaam).Product.ToList().Select(m => new ProductVM(m)));
-                }
-                else {
-                    this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_afdelingNaam).Product.ToList().Select(m => new ProductVM(m)));
-                }
+                this._afdeling = value;
+                this.AfdelingProducten = new ObservableCollection<ProductVM>(new EntityAfdelingRepo().GetByName(_afdeling.Naam).Product.ToList().Select(m => new ProductVM(m)));
                 this.RaisePropertyChanged("_afdelingNaam");
             }
         }
@@ -123,11 +118,33 @@ namespace AppieProducten.ViewModel {
         }
 
         private void ActionSearchProduct() {
-            throw new NotImplementedException("no product search");
+            var searchedlist = new ObservableCollection<ProductVM>();
+            if (SearchProduct == "") {
+                searchedlist = AllProducten;
+            } else {
+                foreach (var item in AllProducten) {
+                    if (item.Naam.ToLower().Contains(SearchProduct.ToLower())) {
+                        searchedlist.Add(item);
+                    }
+                }
+            }
+            Producten = searchedlist;
+            RaisePropertyChanged(() => Producten);
         }
 
         private void ActionSearchAfdelingProduct() {
-            throw new NotImplementedException("no afdeling product search");
+            var searchedlist = new ObservableCollection<ProductVM>();
+            if (SearchAfdelingProduct == "") {
+                searchedlist = AllProducten;
+            } else {
+                foreach (var item in AllProducten) {
+                    if (item.Naam.ToLower().Contains(SearchAfdelingProduct.ToLower())) {
+                        searchedlist.Add(item);
+                    }
+                }
+            }
+            Producten = searchedlist;
+            RaisePropertyChanged(() => Producten);
         }
 
         internal void sort(AfdelingVM value) {
