@@ -1,4 +1,5 @@
 ﻿using DomainModel.DummyRepos;
+using DomainModel.EntityRepos;
 using DomainModel.IRepos;
 using GalaSoft.MvvmLight;
 using System;
@@ -15,7 +16,12 @@ namespace AppieProducten.ViewModel {
         private IKortingRepo kortingRepo;
 
         public KortingListVM() {
-            kortingRepo = new DummyKortingRepo();
+            if (ViewModelBase.IsInDesignModeStatic) {
+                kortingRepo = new DummyKortingRepo();
+            }
+            else {
+                kortingRepo = new EntityKortingRepo();
+            }
 
             kortingen = new ObservableCollection<KortingVM>(kortingRepo.GetAll().ToList().Select(m => new KortingVM(m)));
         }

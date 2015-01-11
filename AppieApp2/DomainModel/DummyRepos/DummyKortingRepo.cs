@@ -39,5 +39,10 @@ namespace DomainModel.DummyRepos {
         public void Update(Korting obj, int id) {
             throw new NotImplementedException();
         }
+
+
+        public void SaveChanges() {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -36,5 +36,10 @@ namespace DomainModel.DummyRepos {
         public void Delete(Merk merk) {
             merken.Remove(merk);
         }
+
+
+        public void SaveChanges() {
+            throw new NotImplementedException();
+        }
     }
 }

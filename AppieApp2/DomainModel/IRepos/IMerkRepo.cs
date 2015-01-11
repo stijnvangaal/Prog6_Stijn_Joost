@@ -10,5 +10,6 @@ namespace DomainModel.IRepos {
         Merk GetByName(string name);
         void Add(Merk merk);
         void Delete(Merk merk);
+        void SaveChanges();
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using DomainModel;
+using DomainModel.EntityRepos;
 
 namespace AppieProducten.ViewModel {
 
@@ -36,7 +37,12 @@ namespace AppieProducten.ViewModel {
 
         //constructor
         public BoodschappenProductLijstVM() {
-            boodschappenRepo = new DummyBoodschappenProductRepo();
+
+            if (ViewModelBase.IsInDesignModeStatic) {
+                boodschappenRepo = new DummyBoodschappenProductRepo();
+            }
+            else { boodschappenRepo = new EntityBoodschappenProductRepo(); }
+            
             allkortingen = new KortingListVM();
             MyKortingen = new List<KortingVM>();
 

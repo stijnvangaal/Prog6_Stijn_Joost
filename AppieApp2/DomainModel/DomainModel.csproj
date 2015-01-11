@@ -67,6 +67,12 @@
     <Compile Include="DummyRepos\DummyProductMerkRepo.cs" />
     <Compile Include="DummyRepos\DummyProductRepo.cs" />
     <Compile Include="EntityRepos\EntityAfdelingRepo.cs" />
+    <Compile Include="EntityRepos\EntityBoodschappenLijstRepo.cs" />
+    <Compile Include="EntityRepos\EntityBoodschappenProductRepo.cs" />
+    <Compile Include="EntityRepos\EntityKortingRepo.cs" />
+    <Compile Include="EntityRepos\EntityMerkRepo.cs" />
+    <Compile Include="EntityRepos\EntityProductMerkRepo.cs" />
+    <Compile Include="EntityRepos\EntityProductRepo.cs" />
     <Compile Include="IRepos\IAfdelingRepo.cs" />
     <Compile Include="IRepos\IBoodschappenLijstRepo.cs" />
     <Compile Include="IRepos\IBoodschappenProductRepo.cs" />

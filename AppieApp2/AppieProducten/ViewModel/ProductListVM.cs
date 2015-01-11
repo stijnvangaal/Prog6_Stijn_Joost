@@ -1,4 +1,5 @@
 ﻿using DomainModel.DummyRepos;
+using DomainModel.EntityRepos;
 using DomainModel.IRepos;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -100,7 +101,12 @@ namespace AppieProducten.ViewModel {
 
         // Constructors
         public ProductListVM() {
-            proRepo = new DummyProductRepo();
+            if (ViewModelBase.IsInDesignModeStatic) {
+                proRepo = new DummyProductRepo();
+            }
+            else {
+                proRepo = new EntityProductRepo();
+            }
 
             AllProducten = new ObservableCollection<ProductVM>(proRepo.GetAll().ToList().Select(m => new ProductVM(m)));
             Producten = AllProducten;
