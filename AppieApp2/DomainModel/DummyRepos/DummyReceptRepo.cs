@@ -34,5 +34,18 @@ namespace DomainModel.DummyRepos {
         public void SaveChanges() {
             throw new NotImplementedException();
         }
+
+
+        public Recept GetById(int id) {
+            throw new NotImplementedException();
+        }
+
+        public void Add(string name) {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Recept obj, string Name) {
+            throw new NotImplementedException();
+        }
     }
 }

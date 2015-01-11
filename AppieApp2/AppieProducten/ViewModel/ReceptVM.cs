@@ -8,7 +8,7 @@ using System.Text;
 namespace AppieProducten.ViewModel {
     public class ReceptVM : ViewModelBase{
 
-        private Recept _Recept;
+        public Recept _Recept;
 
         public ReceptVM() {
             _Recept = new Recept();
